@@ -1,0 +1,35 @@
+2025-08-06 16:23:26,605 - __main__ - INFO - ✅ Lecture Agent initialized successfully
+2025-08-06 16:23:35,647 - src.integrations.supabase_client - ERROR - Error fetching lessons: 'SyncSelectRequestBuilder' object is not callable
+2025-08-06 16:24:01,029 - __main__ - INFO - 🎓 Processing lesson: 03c3fd67-5503-408f-85f9-49e80305f7e4
+2025-08-06 16:24:02,476 - httpx - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/lessons?select=%2A&id=eq.03c3fd67-5503-408f-85f9-49e80305f7e4 "HTTP/2 200 OK"
+2025-08-06 16:24:02,486 - __main__ - INFO - 📚 Processing: "Module 2"
+2025-08-06 16:24:02,486 - __main__ - INFO - 📄 PDF URL: https://xuxdxozihbumbqofxctt.supabase.co/storage/v1/object/public/module-resources/module-1754423844630-file-sample_150kB.pdf
+2025-08-06 16:24:02,486 - src.core.content_processor - INFO - Downloading PDF from: https://xuxdxozihbumbqofxctt.supabase.co/storage/v1/object/public/module-resources/module-1754423844630-file-sample_150kB.pdf
+2025-08-06 16:24:05,444 - src.core.content_processor - INFO - Downloaded PDF: 142786 bytes
+2025-08-06 16:24:05,528 - src.core.content_processor - INFO - Extracted 6306 characters from 4 pages
+2025-08-06 16:24:05,528 - src.core.content_processor - INFO - Generating lecture script with OpenAI...
+2025-08-06 16:24:34,079 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-06 16:24:34,097 - src.core.content_processor - ERROR - Error creating lecture script: name 'datetime' is not defined
+2025-08-06 16:24:34,097 - __main__ - ERROR - ❌ Error processing lesson 03c3fd67-5503-408f-85f9-49e80305f7e4: Failed to create lecture script: name 'datetime' is not defined
+2025-08-06 16:24:34,098 - src.integrations.supabase_client - INFO - Lesson 03c3fd67-5503-408f-85f9-49e80305f7e4 processed. Success: False
+2025-08-06 16:31:44,707 - __main__ - INFO - ✅ Lecture Agent initialized successfully
+2025-08-06 16:31:51,383 - httpx - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/lessons?select=%2A&resources=neq.None&limit=10 "HTTP/2 200 OK"
+2025-08-06 16:32:14,540 - __main__ - INFO - 🎓 Processing lesson: 03c3fd67-5503-408f-85f9-49e80305f7e4
+2025-08-06 16:32:18,110 - httpx - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/lessons?select=%2A&id=eq.03c3fd67-5503-408f-85f9-49e80305f7e4 "HTTP/2 200 OK"
+2025-08-06 16:32:18,112 - __main__ - INFO - 📚 Processing: "Module 2"
+2025-08-06 16:32:18,113 - __main__ - INFO - 📄 PDF URL: https://xuxdxozihbumbqofxctt.supabase.co/storage/v1/object/public/module-resources/module-1754423844630-file-sample_150kB.pdf
+2025-08-06 16:32:18,113 - src.core.content_processor - INFO - Downloading PDF from: https://xuxdxozihbumbqofxctt.supabase.co/storage/v1/object/public/module-resources/module-1754423844630-file-sample_150kB.pdf
+2025-08-06 16:32:19,189 - src.core.content_processor - INFO - Downloaded PDF: 142786 bytes
+2025-08-06 16:32:19,273 - src.core.content_processor - INFO - Extracted 6306 characters from 4 pages
+2025-08-06 16:32:19,273 - src.core.content_processor - INFO - Generating lecture script with OpenAI...
+2025-08-06 16:32:51,189 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-06 16:32:51,211 - src.core.content_processor - INFO - Generated lecture script: 3873 characters
+2025-08-06 16:32:51,212 - src.core.content_processor - INFO - Script saved to: temp/scripts/lecture_script_Module_2.txt
+2025-08-06 16:32:51,212 - src.core.speech_generator - INFO - Generating speech audio with OpenAI TTS...
+2025-08-06 16:32:51,212 - src.core.speech_generator - INFO - Estimated cost: $0.0581 (3873 characters)
+2025-08-06 16:32:53,950 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2025-08-06 16:34:02,781 - src.core.speech_generator - INFO - Audio generated and saved: temp/audio_cache/Module_2_f271a80a.mp3 (4.66 MB)
+2025-08-06 16:34:02,783 - src.integrations.supabase_client - INFO - Lesson 03c3fd67-5503-408f-85f9-49e80305f7e4 processed. Success: True
+2025-08-06 16:34:02,783 - src.integrations.supabase_client - INFO - Script saved: temp/scripts/lecture_script_Module_2.txt
+2025-08-06 16:34:02,783 - src.integrations.supabase_client - INFO - Audio saved: temp/audio_cache/Module_2_f271a80a.mp3
+2025-08-06 16:34:02,783 - __main__ - INFO - ✅ Successfully processed lesson: Module 2
