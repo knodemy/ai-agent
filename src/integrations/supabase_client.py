@@ -20,6 +20,7 @@ class SupabaseClient:
 
         self.supabase: Client = create_client(url, key)
         self.logger = logging.getLogger(__name__)
+        logging.basicConfig(level=logging.INFO)
         self.teacher_id = teacher_id  # Teacher ID for this instance
 
     def get_teacher_school_id(self) -> Optional[str]:
@@ -106,15 +107,19 @@ class SupabaseClient:
             return {'error': str(e)}
 
     def get_teacher_info(self) -> Dict:
-        """Get basic teacher information"""
+        """Get basic teacher information, construct 'name' from first_name + last_name"""
         try:
-            response = self.supabase.table('users').select('id, school_id, name, email').eq(
+            response = self.supabase.table('users').select('id, school_id, first_name, last_name, email').eq(
                 'id', self.teacher_id
             ).execute()
             
             if response.data and len(response.data) > 0:
-                return response.data[0]
+                user_data = response.data[0]
+                user_data['name'] = f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip()
+                self.logger.info(f"Fetched teacher info for {self.teacher_id}: {user_data}")
+                return user_data
             else:
+                self.logger.warning(f"Teacher not found: {self.teacher_id}")
                 return {'error': 'Teacher not found'}
         except Exception as e:
             self.logger.error(f"Error fetching teacher info: {e}")

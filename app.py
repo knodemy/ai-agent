@@ -31,6 +31,7 @@ async def get_teacher_lessons(teacher_id: str = Query(..., description="The ID o
     Fetch all lessons organized by courses for a specific teacher.
     """
     try:
+        print("hitting api from front end")
         client = SupabaseClient(teacher_id=teacher_id)
         data = client.get_all_teacher_lessons_with_courses()
 
