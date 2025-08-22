@@ -7,6 +7,10 @@ from typing import Optional
 import logging
 from pathlib import Path
 from datetime import datetime
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from textwrap import wrap
 
 class ContentProcessor:
     def __init__(self):
@@ -84,96 +88,106 @@ class ContentProcessor:
             self.logger.error(f"Error extracting PDF text: {e}")
             raise Exception(f"Failed to extract PDF text: {str(e)}")
 
-    def create_lecture_script(self, pdf_url: str, lesson_title: str) -> dict:
-        """Convert PDF content into a structured lecture script"""
-        try:
-            if not self.is_valid_pdf_url(pdf_url):
-                raise ValueError(f"Invalid PDF URL: {pdf_url}")
+    def create_student_friendly_script(self, source_text: str, lesson_title: str,
+                                       audience: str = "middle school (ages 11–14)",
+                                       language: str = "English",
+                                       duration_minutes: tuple[int, int] = (20, 30)) -> str:
+        if not os.getenv("OPENAI_API_KEY"):
+            raise ValueError('OpenAI API key not provided')
 
-            if not os.getenv("OPENAI_API_KEY"):
-                raise ValueError('OpenAI API key not provided')
+        lo, hi = duration_minutes
+        system_prompt = f"""
+        You are an expert teacher. Create a highly understandable, engaging lecture script for {audience} students.
+        Must be in {language}. Keep the tone warm, clear, and conversational. Avoid jargon unless you define it.
+        Requirements:
+        1) Hook 2–3 minutes.
+        2) Timing markers like [2:00], [6:30].
+        3) Simple definitions, analogies, real-life examples.
+        4) "Check-in" questions every ~3–5 minutes.
+        5) 1-minute recap with 3–5 takeaways.
+        6) Total spoken duration ≈ {lo}–{hi} minutes.
+        7) Bullet points and short sentences where helpful.
+        """
+        user_prompt = f'Lesson Title: "{lesson_title}"\n\nBase the script on this content (reorganize/simplify as needed):\n\n{source_text[:8000]}'
 
-            pdf_bytes = self.download_pdf_from_url(pdf_url)
-            text_content = self.extract_text_from_pdf(pdf_bytes)
-            
-            if len(text_content) < 100:
-                raise ValueError("PDF content too short")
+        resp = self.openai_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "system", "content": system_prompt},
+                      {"role": "user", "content": user_prompt}],
+            max_tokens=3500,
+            temperature=0.7,
+        )
+        script = resp.choices[0].message.content if resp.choices else ""
+        if not script:
+            raise ValueError("OpenAI returned an empty script")
+        return script
 
-            self.logger.info("Generating lecture script with OpenAI...")
-            response = self.openai_client.chat.completions.create(
-                model="gpt-4",
-                messages=[
-                    {
-                        "role": "system",
-                        "content": """You are an expert lecturer creating an engaging presentation script. 
+    def _render_text_to_pdf(self, title: str, subtitle_lines: list[str], body: str,
+                            page_size=A4, margins_cm: float = 2.0,
+                            font_name: str = "Helvetica", font_size: int = 11,
+                            heading_font_size: int = 16) -> bytes:
+        buf = io.BytesIO()
+        c = canvas.Canvas(buf, pagesize=page_size)
+        width, height = page_size
+        margin = margins_cm * cm
+        usable_width = width - 2 * margin
+        y = height - margin
 
-                        Create a well-structured lecture script that:
-                        1. Has a compelling introduction (2-3 minutes)
-                        2. Breaks complex topics into digestible segments with clear transitions  
-                        3. Includes relevant examples and analogies
-                        4. Has engaging delivery with natural speech patterns
-                        5. Ends with a strong summary and key takeaways
-                        6. Is designed to be spoken aloud naturally
-                        7. Total duration should be 20-30 minutes
+        c.setFont(font_name, heading_font_size)
+        c.drawString(margin, y, title[:120]); y -= 0.8 * cm
+        c.setFont(font_name, 10)
+        for line in subtitle_lines:
+            c.drawString(margin, y, line[:160]); y -= 0.55 * cm
+        y -= 0.3 * cm
+        c.line(margin, y, width - margin, y); y -= 0.6 * cm
 
-                        Format with timing markers like [2:00], [5:00] etc. for different sections.
-                        Make it conversational and engaging for students."""
-                    },
-                    {
-                        "role": "user",
-                        "content": f"""Create a lecture script for "{lesson_title}" based on this content:\n\n{text_content[:8000]}"""
-                    }
-                ],
-                max_tokens=3500,
-                temperature=0.7
-            )
-            
-            script = response.choices[0].message.content
-            if not script:
-                raise ValueError("OpenAI returned empty script")
-            
-            script_filename = f"lecture_script_{lesson_title.replace(' ', '_').replace('/', '_')}.txt"
-            script_file = self.scripts_dir / script_filename
-            
-            with open(script_file, 'w', encoding='utf-8') as f:
-                f.write(f"LECTURE SCRIPT: {lesson_title}\n")
-                f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-                f.write(f"PDF Source: {pdf_url}\n")
-                f.write("="*80 + "\n\n")
-                f.write(script)
-            
-            self.logger.info(f"Generated lecture script: {len(script)} characters")
-            self.logger.info(f"Script saved to: {script_file}")
-            
-            return {
-                'script': script,
-                'script_file': str(script_file),
-                'length': len(script),
-                'lesson_title': lesson_title,
-                'pdf_source': pdf_url
-            }
-            
-        except Exception as e:
-            self.logger.error(f"Error creating lecture script: {e}")
-            raise Exception(f"Failed to create lecture script: {str(e)}")
+        c.setFont(font_name, font_size)
+        line_height = 0.52 * cm
+        from textwrap import wrap
+        paragraphs = body.splitlines()
+        for para in paragraphs:
+            if not para.strip():
+                y -= line_height
+                if y <= margin:
+                    c.showPage(); y = height - margin; c.setFont(font_name, font_size)
+                continue
+            wrapped = wrap(para, width=int(usable_width / (font_size * 0.5)))
+            for line in wrapped:
+                if y <= margin:
+                    c.showPage(); y = height - margin; c.setFont(font_name, font_size)
+                c.drawString(margin, y, line); y -= line_height
 
-    def analyze_pdf_content(self, pdf_url: str) -> dict:
-        """Analyze PDF content and return summary"""
-        try:
-            pdf_bytes = self.download_pdf_from_url(pdf_url)
-            text_content = self.extract_text_from_pdf(pdf_bytes)
-            
-            word_count = len(text_content.split())
-            char_count = len(text_content)
-            reading_time_minutes = word_count / 200
-            
-            return {
-                'word_count': word_count,
-                'character_count': char_count,
-                'estimated_reading_time': f"{reading_time_minutes:.1f} minutes",
-                'content_preview': text_content[:500] + "..." if len(text_content) > 500 else text_content
-            }
-            
-        except Exception as e:
-            self.logger.error(f"Error analyzing PDF: {e}")
-            return {'error': str(e)}
+        c.showPage(); c.save(); buf.seek(0)
+        return buf.read()
+
+    def generate_script_pdf_bytes(self, pdf_source_url: str, lesson_title: str,
+                                  teacher_name: str, audience: str = "middle school (ages 11–14)",
+                                  language: str = "English") -> dict:
+        if not self.is_valid_pdf_url(pdf_source_url):
+            raise ValueError(f"Invalid PDF URL: {pdf_source_url}")
+
+        src_bytes = self.download_pdf_from_url(pdf_source_url)
+        extracted = self.extract_text_from_pdf(src_bytes)
+        if len(extracted) < 100:
+            raise ValueError("PDF content too short to build a meaningful script")
+
+        script_text = self.create_student_friendly_script(
+            source_text=extracted,
+            lesson_title=lesson_title,
+            audience=audience,
+            language=language,
+        )
+
+        now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+        subtitle = [f"Generated for: {teacher_name or 'Teacher'}",
+                    f"Source: {pdf_source_url}",
+                    f"Generated: {now}"]
+        pdf_bytes = self._render_text_to_pdf(
+            title=f"Lecture Script: {lesson_title}",
+            subtitle_lines=subtitle,
+            body=script_text,
+        )
+        return {"pdf_bytes": pdf_bytes, "script_text": script_text,
+                "meta": {"lesson_title": lesson_title,
+                        "source_url": pdf_source_url,
+                        "generated_at": now}}

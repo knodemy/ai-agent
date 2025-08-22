@@ -5,6 +5,8 @@ import os
 from dotenv import load_dotenv
 from typing import List, Dict, Optional
 import logging
+import json
+from typing import Tuple
 
 load_dotenv()
 
@@ -61,13 +63,16 @@ class SupabaseClient:
     def get_course_lessons(self, course_id: str) -> List[Dict]:
         """Get lessons for a specific course"""
         try:
+            # Correct usage for Supabase Python client
             response = self.supabase.table('lessons').select('*').eq(
                 'course_id', course_id
-            ).order('created_at', {'ascending': False}).execute()  # descending order
+            ).order('created_at', desc=True).execute()  # descending order
             return response.data if response.data else []
         except Exception as e:
             self.logger.error(f"Error fetching lessons for course {course_id}: {e}")
             return []
+
+
 
     def get_all_teacher_lessons_with_courses(self) -> Dict:
         """Get all lessons organized by courses for the assigned teacher"""
@@ -124,3 +129,137 @@ class SupabaseClient:
         except Exception as e:
             self.logger.error(f"Error fetching teacher info: {e}")
             return {'error': str(e)}
+
+    def _extract_pdf_urls(self, resources_val) -> list[str]:
+        """
+        Returns a list of direct PDF URLs from the 'resources' column.
+        Accepts JSON (list/dict) or raw string. Filters to *.pdf only.
+        """
+        urls: list[str] = []
+
+        if not resources_val or str(resources_val).strip().upper() == "NULL":
+            return urls
+
+        try:
+            # Try to parse JSON first
+            parsed = resources_val if isinstance(resources_val, (list, dict)) else json.loads(resources_val)
+            if isinstance(parsed, list):
+                for item in parsed:
+                    if isinstance(item, str) and item.lower().endswith(".pdf"):
+                        urls.append(item)
+                    elif isinstance(item, dict):
+                        # Common shapes: {"url": "...", "type": "pdf"} etc.
+                        u = item.get("url") or item.get("href") or item.get("path")
+                        if isinstance(u, str) and u.lower().endswith(".pdf"):
+                            urls.append(u)
+            elif isinstance(parsed, dict):
+                # e.g. {"url":"...pdf"}
+                u = parsed.get("url") or parsed.get("href") or parsed.get("path")
+                if isinstance(u, str) and u.lower().endswith(".pdf"):
+                    urls.append(u)
+        except Exception:
+            # Not JSON — treat as string with possible separators
+            s = str(resources_val)
+            parts = [p.strip() for p in s.replace(",", "\n").splitlines()]
+            for p in parts:
+                if p.lower().endswith(".pdf") and p.lower().startswith(("http://", "https://")):
+                    urls.append(p)
+
+        # de-dup
+        return list(dict.fromkeys(urls))
+
+    def get_lessons_with_pdf_resources(self, course_id: str) -> list[dict]:
+        """
+        Returns lessons for the course but only those with 1+ direct PDF URLs,
+        adding a 'pdf_urls' list to each lesson object.
+        """
+        lessons = self.get_course_lessons(course_id)
+        with_pdfs = []
+        for lesson in lessons:
+            pdf_urls = self._extract_pdf_urls(lesson.get("resources"))
+            if pdf_urls:
+                lesson["pdf_urls"] = pdf_urls
+                with_pdfs.append(lesson)
+        return with_pdfs
+
+    # ---------- Storage helpers ----------
+
+    def upload_pdf_to_bucket(
+        self,
+        bucket: str,
+        pdf_bytes: bytes,
+        path: str,
+        upsert: bool = True,
+        content_type: str = "application/pdf",
+    ) -> dict:
+        """
+        Uploads bytes to Supabase Storage. Handles different supabase-py signatures.
+        """
+        # Convert bool to the string formats the API expects
+        upsert_str = "true" if upsert else "false"
+
+        # Try common option key variants (different client versions accept different keys)
+        option_sets = [
+            {"content-type": content_type, "x-upsert": upsert_str},         # newer servers like x-upsert
+            {"content-type": content_type, "upsert": upsert_str},           # some clients accept upsert as a string
+            {"contentType": content_type, "upsert": upsert_str},            # camelCase variant
+        ]
+
+        last_err = None
+        for opts in option_sets:
+            try:
+                # Prefer positional signature first (most reliable across versions)
+                res = self.supabase.storage.from_(bucket).upload(path, pdf_bytes, opts)
+                if isinstance(res, dict) and res.get("error"):
+                    raise RuntimeError(res["error"])
+                return {"bucket": bucket, "path": path}
+            except Exception as e:
+                last_err = e
+                continue
+
+        self.logger.error(f"Upload error for {path}: {last_err}")
+        raise last_err
+
+    def create_signed_url(
+        self, bucket: str, path: str, expires_in: int = 60 * 60 * 24
+    ) -> Optional[str]:
+        """
+        Returns a time-limited signed URL so frontend can fetch the PDF.
+        """
+        try:
+            data = self.supabase.storage.from_(bucket).create_signed_url(path, expires_in)
+            return data.get("signedURL") or data.get("signed_url")
+        except Exception as e:
+            self.logger.error(f"Signed URL error for {path}: {e}")
+            return None
+
+    def get_public_url(self, bucket: str, path: str) -> str | None:
+        try:
+            data = self.supabase.storage.from_(bucket).get_public_url(path)
+            return data.get("publicURL") or data.get("public_url")
+        except Exception as e:
+            self.logger.error(f"Public URL error for {path}: {e}")
+            return None
+
+    def record_prepared_lesson(self, lesson_id: str, url: str) -> dict:
+        """
+        Upsert a row per (lesson_id, url). agent_id stays NULL.
+        """
+
+        payload = {
+            "lesson_id": lesson_id,
+            "teacher_id": self.teacher_id,
+            "agent_id": None,
+            "url": url,
+        }
+        try:
+            print(f"Inserting into prepared_lessons: {payload}")
+            res = self.supabase.table("prepared_lessons").upsert(
+                payload, on_conflict="lesson_id,url"
+            ).execute()
+            print(f"Insert result: {res}")  # Debugging
+            return res.data[0] if res.data else payload
+        except Exception as e:
+            print("no insert")
+            self.logger.error(f"DB insert error (prepared_lessons): {e}")
+            raise
