@@ -25,6 +25,7 @@ class SupabaseClient:
         logging.basicConfig(level=logging.INFO)
         self.teacher_id = teacher_id  # Teacher ID for this instance
 
+
     def get_teacher_school_id(self) -> Optional[str]:
         """Get school_id for the assigned teacher"""
         try:
