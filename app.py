@@ -36,10 +36,12 @@ app = FastAPI(title="Teacher Lessons API")
 
 # CORS configuration
 origins = [
-    "http://localhost:8080",
+   "http://localhost:8080",
     "http://localhost:3000", 
     "http://127.0.0.1:8080",
     "http://127.0.0.1:3000",
+    "https://teacher.knodemy.ai/",
+    "https://devteacher.knodemy.ai/"
 ]
 
 app.add_middleware(
