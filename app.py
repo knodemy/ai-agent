@@ -40,8 +40,8 @@ origins = [
     "http://localhost:3000", 
     "http://127.0.0.1:8080",
     "http://127.0.0.1:3000",
-    "https://teacher.knodemy.ai/",
-    "https://devteacher.knodemy.ai/"
+    "https://teacher.knodemy.ai",
+    "https://devteacher.knodemy.ai"
     "http://18.224.67.22:8000"
 ]
 
