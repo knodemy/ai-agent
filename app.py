@@ -42,16 +42,16 @@ origins = [
     "http://127.0.0.1:3000",
     "https://teacher.knodemy.ai",
     "https://devteacher.knodemy.ai"
-    "http://18.224.67.22:8000"
-]
+    ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origin_regex=r"^https://([a-z0-9-]+\.)?knodemy\.ai$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Settings
 SCRIPTS_BUCKET = os.getenv("SCRIPTS_BUCKET", "lecture-scripts")
