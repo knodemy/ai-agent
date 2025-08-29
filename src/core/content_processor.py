@@ -91,30 +91,54 @@ class ContentProcessor:
     def create_student_friendly_script(self, source_text: str, lesson_title: str,
                                        audience: str = "middle school (ages 11–14)",
                                        language: str = "English",
-                                       duration_minutes: tuple[int, int] = (20, 30)) -> str:
+                                       duration_minutes: tuple[int, int] = (35, 40)) -> str:
         if not os.getenv("OPENAI_API_KEY"):
             raise ValueError('OpenAI API key not provided')
 
         lo, hi = duration_minutes
-        system_prompt = f"""
-        You are an expert teacher. Create a highly understandable, engaging lecture script for {audience} students.
-        Must be in {language}. Keep the tone warm, clear, and conversational. Avoid jargon unless you define it.
-        Requirements:
-        1) Hook 2–3 minutes.
-        2) Timing markers like [2:00], [6:30].
-        3) Simple definitions, analogies, real-life examples.
-        4) "Check-in" questions every ~3–5 minutes.
-        5) 1-minute recap with 3–5 takeaways.
-        6) Total spoken duration ≈ {lo}–{hi} minutes.
-        7) Bullet points and short sentences where helpful.
-        """
+        system_prompt = system_prompt = f"""
+                You are an expert teacher. Create a highly detailed, engaging 40-minute lecture script for {audience} students.
+                Must be in {language}. Keep the tone warm, clear, and conversational. Avoid jargon unless you define it.
+
+                STRUCTURE REQUIREMENTS:
+                1) Opening Hook (3-5 minutes): Engaging introduction with real-world connection
+                2) Learning Objectives (2 minutes): Clear, student-friendly goals
+                3) Main Content Sections (25-30 minutes): Break into 3-4 major sections with:
+                - Clear transitions between sections
+                - Interactive elements every 5-7 minutes
+                - Real-world examples and analogies
+                - Visual descriptions ("imagine this..." or "picture this...")
+                4) Practice/Application (5-7 minutes): Student activities or examples
+                5) Recap & Takeaways (3-5 minutes): Summarize key points
+
+                TIMING & ENGAGEMENT:
+                - Include timing markers like [5:00], [12:30], [25:00], etc.
+                - "Check-in" questions every 5-7 minutes to maintain engagement
+                - Include "pause moments" for student reflection
+                - Suggest when to show examples, diagrams, or interactive elements
+                - Total spoken duration should be {lo}–{hi} minutes
+
+                CONTENT DEPTH:
+                - Provide detailed explanations with multiple examples
+                - Include step-by-step breakdowns of complex concepts
+                - Add historical context or interesting facts where relevant
+                - Suggest extension activities for advanced students
+                - Include common misconceptions and how to address them
+
+                FORMAT:
+                - Use clear section headers
+                - Include speaker notes in [brackets] for teaching tips
+                - Bullet points for key concepts
+                - Suggested discussion questions
+                - Recommended visual aids or demonstrations
+                """
         user_prompt = f'Lesson Title: "{lesson_title}"\n\nBase the script on this content (reorganize/simplify as needed):\n\n{source_text[:8000]}'
 
         resp = self.openai_client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "system", "content": system_prompt},
                       {"role": "user", "content": user_prompt}],
-            max_tokens=3500,
+            max_tokens=3000,
             temperature=0.7,
         )
         script = resp.choices[0].message.content if resp.choices else ""

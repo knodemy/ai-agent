@@ -264,3 +264,128 @@ class SupabaseClient:
             print("no insert")
             self.logger.error(f"DB insert error (prepared_lessons): {e}")
             raise
+
+
+    def upload_audio_to_bucket(
+        self,
+        bucket: str,
+        audio_bytes: bytes,
+        path: str,
+        upsert: bool = True,
+        content_type: str = "audio/mpeg",
+    ) -> dict:
+        """
+        Uploads audio bytes to Supabase Storage. 
+        Same as upload_pdf_to_bucket but with audio-specific content type.
+        """
+        # Convert bool to the string formats the API expects
+        upsert_str = "true" if upsert else "false"
+
+        # Try common option key variants (different client versions accept different keys)
+        option_sets = [
+            {"content-type": content_type, "x-upsert": upsert_str},
+            {"content-type": content_type, "upsert": upsert_str},
+            {"contentType": content_type, "upsert": upsert_str},
+        ]
+
+        last_err = None
+        for opts in option_sets:
+            try:
+                res = self.supabase.storage.from_(bucket).upload(path, audio_bytes, opts)
+                if isinstance(res, dict) and res.get("error"):
+                    raise RuntimeError(res["error"])
+                return {"bucket": bucket, "path": path}
+            except Exception as e:
+                last_err = e
+                continue
+
+        self.logger.error(f"Audio upload error for {path}: {last_err}")
+        raise last_err
+
+    def record_prepared_audio(self, lesson_id: str, audio_url: str) -> dict:
+        """
+        Record a prepared audio file in the database.
+        You might want to create a separate table for audio files or 
+        add an audio_url column to prepared_lessons.
+        """
+        payload = {
+            "lesson_id": lesson_id,
+            "teacher_id": self.teacher_id,
+            "agent_id": None,
+            "audio_url": audio_url,  # Consider adding this column to your table
+            "type": "audio",  # To distinguish from script PDFs
+        }
+        
+        try:
+            # Option 1: If you add an audio_url column to prepared_lessons table
+            res = self.supabase.table("prepared_lessons").update(
+                {"audio_url": audio_url}
+            ).eq("lesson_id", lesson_id).eq("teacher_id", self.teacher_id).execute()
+            
+            # Option 2: If you create a separate audio table (recommended)
+            # res = self.supabase.table("prepared_audio").upsert(
+            #     payload, on_conflict="lesson_id,teacher_id"
+            # ).execute()
+            
+            return res.data[0] if res.data else payload
+        except Exception as e:
+            self.logger.error(f"DB insert error (prepared_audio): {e}")
+            raise
+
+    def get_prepared_lessons_for_audio_generation(self, course_id: str, date: str) -> List[Dict]:
+        """
+        Get prepared lessons that need audio generation.
+        Returns lessons that have script PDFs but no audio files.
+        """
+        try:
+            # Get all prepared lessons for this course
+            response = self.supabase.table('prepared_lessons').select(
+                'lesson_id, url'
+            ).eq('teacher_id', self.teacher_id).execute()
+            
+            if not response.data:
+                return []
+            
+            # Filter for script PDFs that don't have corresponding audio
+            script_lessons = []
+            for lesson in response.data:
+                url = lesson.get('url', '')
+                if url and 'script.pdf' in url and date in url:
+                    # Check if audio already exists
+                    audio_exists = self.check_if_audio_exists(lesson['lesson_id'], date)
+                    if not audio_exists:
+                        script_lessons.append(lesson)
+            
+            return script_lessons
+            
+        except Exception as e:
+            self.logger.error(f"Error fetching prepared lessons for audio: {e}")
+            return []
+
+    def check_if_audio_exists(self, lesson_id: str, date: str) -> bool:
+        """Check if audio file already exists for a lesson."""
+        try:
+            # Check in prepared_lessons table for audio_url
+            response = self.supabase.table('prepared_lessons').select(
+                'audio_url'
+            ).eq('lesson_id', lesson_id).eq('teacher_id', self.teacher_id).execute()
+            
+            if response.data and response.data[0].get('audio_url'):
+                return True
+            
+            # Alternatively, check in storage bucket directly
+            audio_bucket = "lecture-audios"
+            expected_path = f"{self.teacher_id}/{lesson_id}/{date}/{lesson_id}_audio.mp3"
+            
+            try:
+                file_info = self.supabase.storage.from_(audio_bucket).list(
+                    path=f"{self.teacher_id}/{lesson_id}/{date}"
+                )
+                audio_files = [f for f in file_info if f.get('name', '').endswith('_audio.mp3')]
+                return len(audio_files) > 0
+            except:
+                return False
+                
+        except Exception as e:
+            self.logger.error(f"Error checking audio existence: {e}")
+            return False
