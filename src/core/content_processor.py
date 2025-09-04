@@ -131,6 +131,8 @@ class ContentProcessor:
                 - Bullet points for key concepts
                 - Suggested discussion questions
                 - Recommended visual aids or demonstrations
+
+                IMPORTANT: Every script MUST include all 5 section headers with their exact timing markers as shown above.
                 """
         user_prompt = f'Lesson Title: "{lesson_title}"\n\nBase the script on this content (reorganize/simplify as needed):\n\n{source_text[:8000]}'
 

@@ -25,7 +25,6 @@ class SupabaseClient:
         logging.basicConfig(level=logging.INFO)
         self.teacher_id = teacher_id  # Teacher ID for this instance
 
-
     def get_teacher_school_id(self) -> Optional[str]:
         """Get school_id for the assigned teacher"""
         try:
@@ -42,6 +41,24 @@ class SupabaseClient:
                 return None
         except Exception as e:
             self.logger.error(f"Error fetching teacher school_id: {e}")
+            return None
+
+    def get_teacher_agent_id(self) -> Optional[str]:
+        """Get the agent_id for the assigned teacher from agent_instances table"""
+        try:
+            response = self.supabase.table('agent_instances').select('id').eq(
+                'current_teacher_id', self.teacher_id
+            ).execute()
+            
+            if response.data and len(response.data) > 0:
+                agent_id = response.data[0]['id']
+                self.logger.info(f"Found agent_id: {agent_id} for teacher: {self.teacher_id}")
+                return agent_id
+            else:
+                self.logger.warning(f"No agent_id found for teacher: {self.teacher_id}")
+                return None
+        except Exception as e:
+            self.logger.error(f"Error fetching teacher agent_id: {e}")
             return None
 
     def get_teacher_courses(self, school_id: str) -> List[Dict]:
@@ -64,16 +81,13 @@ class SupabaseClient:
     def get_course_lessons(self, course_id: str) -> List[Dict]:
         """Get lessons for a specific course"""
         try:
-            # Correct usage for Supabase Python client
             response = self.supabase.table('lessons').select('*').eq(
                 'course_id', course_id
-            ).order('created_at', desc=True).execute()  # descending order
+            ).order('created_at', desc=True).execute()
             return response.data if response.data else []
         except Exception as e:
             self.logger.error(f"Error fetching lessons for course {course_id}: {e}")
             return []
-
-
 
     def get_all_teacher_lessons_with_courses(self) -> Dict:
         """Get all lessons organized by courses for the assigned teacher"""
@@ -201,15 +215,14 @@ class SupabaseClient:
 
         # Try common option key variants (different client versions accept different keys)
         option_sets = [
-            {"content-type": content_type, "x-upsert": upsert_str},         # newer servers like x-upsert
-            {"content-type": content_type, "upsert": upsert_str},           # some clients accept upsert as a string
-            {"contentType": content_type, "upsert": upsert_str},            # camelCase variant
+            {"content-type": content_type, "x-upsert": upsert_str},
+            {"content-type": content_type, "upsert": upsert_str},
+            {"contentType": content_type, "upsert": upsert_str},
         ]
 
         last_err = None
         for opts in option_sets:
             try:
-                # Prefer positional signature first (most reliable across versions)
                 res = self.supabase.storage.from_(bucket).upload(path, pdf_bytes, opts)
                 if isinstance(res, dict) and res.get("error"):
                     raise RuntimeError(res["error"])
@@ -242,29 +255,78 @@ class SupabaseClient:
             self.logger.error(f"Public URL error for {path}: {e}")
             return None
 
-    def record_prepared_lesson(self, lesson_id: str, url: str) -> dict:
+    def record_complete_prepared_lesson(self, lesson_id: str, script_url: str, audio_url: Optional[str] = None) -> dict:
         """
-        Upsert a row per (lesson_id, url). agent_id stays NULL.
+        Insert a complete prepared lesson record with both script and audio URLs in one operation.
         """
-
+        # Get the agent_id for this teacher
+        agent_id = self.get_teacher_agent_id()
+        
         payload = {
             "lesson_id": lesson_id,
             "teacher_id": self.teacher_id,
-            "agent_id": None,
-            "url": url,
+            "agent_id": agent_id,
+            "url": script_url,
+            "audio_url": audio_url,  # Can be None if audio generation failed
         }
+        
         try:
-            print(f"Inserting into prepared_lessons: {payload}")
+            print(f"Inserting complete prepared lesson: {payload}")
             res = self.supabase.table("prepared_lessons").upsert(
                 payload, on_conflict="lesson_id,url"
             ).execute()
-            print(f"Insert result: {res}")  # Debugging
+            print(f"Insert result: {res}")
             return res.data[0] if res.data else payload
         except Exception as e:
-            print("no insert")
+            print(f"DB insert error: {e}")
+            self.logger.error(f"DB insert error (complete prepared lesson): {e}")
+            raise
+
+    # Legacy methods for backwards compatibility (in case they're used elsewhere)
+    def record_prepared_lesson(self, lesson_id: str, url: str) -> dict:
+        """
+        Legacy method - upsert a row per (lesson_id, url) with agent_id lookup.
+        Use record_complete_prepared_lesson() for new code.
+        """
+        agent_id = self.get_teacher_agent_id()
+        
+        payload = {
+            "lesson_id": lesson_id,
+            "teacher_id": self.teacher_id,
+            "agent_id": agent_id,
+            "url": url,
+            "audio_url": None,
+        }
+        
+        try:
+            print(f"Inserting into prepared_lessons (legacy): {payload}")
+            res = self.supabase.table("prepared_lessons").upsert(
+                payload, on_conflict="lesson_id,url"
+            ).execute()
+            print(f"Insert result: {res}")
+            return res.data[0] if res.data else payload
+        except Exception as e:
+            print("Legacy insert error")
             self.logger.error(f"DB insert error (prepared_lessons): {e}")
             raise
 
+    def record_prepared_audio(self, lesson_id: str, audio_url: str) -> dict:
+        """
+        Legacy method - Update an existing prepared lesson with audio URL.
+        Use record_complete_prepared_lesson() for new code.
+        """
+        agent_id = self.get_teacher_agent_id()
+        
+        try:
+            res = self.supabase.table("prepared_lessons").update({
+                "audio_url": audio_url,
+                "agent_id": agent_id  # Also update agent_id in case it was missing
+            }).eq("lesson_id", lesson_id).eq("teacher_id", self.teacher_id).execute()
+            
+            return res.data[0] if res.data else {}
+        except Exception as e:
+            self.logger.error(f"DB update error (prepared_audio): {e}")
+            raise
 
     def upload_audio_to_bucket(
         self,
@@ -302,36 +364,6 @@ class SupabaseClient:
         self.logger.error(f"Audio upload error for {path}: {last_err}")
         raise last_err
 
-    def record_prepared_audio(self, lesson_id: str, audio_url: str) -> dict:
-        """
-        Record a prepared audio file in the database.
-        You might want to create a separate table for audio files or 
-        add an audio_url column to prepared_lessons.
-        """
-        payload = {
-            "lesson_id": lesson_id,
-            "teacher_id": self.teacher_id,
-            "agent_id": None,
-            "audio_url": audio_url,  # Consider adding this column to your table
-            "type": "audio",  # To distinguish from script PDFs
-        }
-        
-        try:
-            # Option 1: If you add an audio_url column to prepared_lessons table
-            res = self.supabase.table("prepared_lessons").update(
-                {"audio_url": audio_url}
-            ).eq("lesson_id", lesson_id).eq("teacher_id", self.teacher_id).execute()
-            
-            # Option 2: If you create a separate audio table (recommended)
-            # res = self.supabase.table("prepared_audio").upsert(
-            #     payload, on_conflict="lesson_id,teacher_id"
-            # ).execute()
-            
-            return res.data[0] if res.data else payload
-        except Exception as e:
-            self.logger.error(f"DB insert error (prepared_audio): {e}")
-            raise
-
     def get_prepared_lessons_for_audio_generation(self, course_id: str, date: str) -> List[Dict]:
         """
         Get prepared lessons that need audio generation.
@@ -345,7 +377,7 @@ class SupabaseClient:
             
             if not response.data:
                 return []
-            
+
             # Filter for script PDFs that don't have corresponding audio
             script_lessons = []
             for lesson in response.data:
