@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zoom SDK Join - malaika AI Teacher</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        #status {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 9999;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        #zmmtg-root {
+            width: 100%;
+            height: 100vh;
+        }
+        
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        
+        p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        #join-status {
+            font-weight: bold;
+            font-size: 16px;
+            color: #FFD700;
+            margin: 10px 0;
+        }
+        
+        .debug-info {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        #error-log {
+            background: rgba(255,0,0,0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: block;
+        }
+        
+        #error-details {
+            font-size: 11px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        #manual-join {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0,100,200,0.2);
+            border-radius: 5px;
+        }
+        
+        #manual-join button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="zmmtg-root"></div>
+    <div id="status">
+        <h1>malaika AI Teacher</h1>
+        <p><strong>Course:</strong> AI with Scratch</p>
+        <p><strong>Meeting ID:</strong> 71531517987</p>
+        <p><strong>Password:</strong> Yes</p>
+        
+        <div class="debug-info">
+            <strong>SDK Configuration:</strong><br>
+            Key: 1YyQtzNSDOv486zqgo2kQ<br>
+            Signature Length: 239<br>
+            Time: {new Date().toLocaleString()}
+        </div>
+        
+        <div id="join-status">Initializing...</div>
+        
+        <div id="error-log">
+            <h4>Debug Log:</h4>
+            <pre id="error-details"></pre>
+        </div>
+        
+        <div id="manual-join">
+            <h4>Manual Join Options:</h4>
+            <button onclick="testSDKLoad()">Test SDK Load</button>
+            <button onclick="initializeSDK()">Retry Initialize</button>
+            <button onclick="openZoomApp()">Open Zoom App</button>
+        </div>
+    </div>
+
+    <script>
+        let joinInProgress = false;
+        let sdkLoadAttempts = 0;
+        const maxLoadAttempts = 3;
+        
+        function log(message, isError = false) {
+            console.log(message);
+            const statusEl = document.getElementById('join-status');
+            const errorDetails = document.getElementById('error-details');
+            
+            statusEl.innerHTML = message;
+            errorDetails.textContent += new Date().toLocaleTimeString() + ': ' + message + '\n';
+            errorDetails.scrollTop = errorDetails.scrollHeight;
+            
+            if (isError) {
+                statusEl.classList.add('error');
+            } else {
+                statusEl.classList.remove('error');
+            }
+        }
+
+        function testSDKLoad() {
+            log('Testing SDK load...');
+            log('ZoomMtg type: ' + typeof ZoomMtg);
+            log('Window location: ' + window.location.href);
+            
+            if (typeof ZoomMtg !== 'undefined') {
+                log('SDK is loaded! Available methods: ' + Object.keys(ZoomMtg).join(', '));
+                initializeSDK();
+            } else {
+                log('SDK not loaded. Trying alternative load method...', true);
+                loadSDKAlternative();
+            }
+        }
+
+        function loadSDKAlternative() {
+            if (sdkLoadAttempts >= maxLoadAttempts) {
+                log('Max load attempts reached. SDK may be blocked.', true);
+                return;
+            }
+            
+            sdkLoadAttempts++;
+            log('SDK load attempt ' + sdkLoadAttempts + '/' + maxLoadAttempts);
+            
+            const script = document.createElement('script');
+            script.onload = function() {
+                log('SDK script loaded successfully');
+                setTimeout(() => {
+                    testSDKLoad();
+                }, 1000);
+            };
+            script.onerror = function() {
+                log('Failed to load SDK script', true);
+                setTimeout(() => {
+                    loadSDKAlternative();
+                }, 2000);
+            };
+            
+            // Try different SDK versions
+            const sdkUrls = [
+                'https://source.zoom.us/zoom-meeting-3.8.5.min.js',
+                'https://source.zoom.us/3.8.5/lib/vendor/zoom-meeting-3.8.5.min.js',
+                'https://dmogdx0jrul3u.cloudfront.net/3.8.5/lib/vendor/zoom-meeting-3.8.5.min.js'
+            ];
+            
+            script.src = sdkUrls[(sdkLoadAttempts - 1) % sdkUrls.length];
+            log('Loading SDK from: ' + script.src);
+            document.head.appendChild(script);
+        }
+
+        function initializeSDK() {
+            if (typeof ZoomMtg === 'undefined') {
+                log('ERROR: Zoom SDK not loaded', true);
+                loadSDKAlternative();
+                return;
+            }
+
+            log('Zoom SDK loaded successfully');
+            
+            try {
+                log('Setting up Zoom SDK...');
+                
+                // Initialize SDK with proper options
+                ZoomMtg.setZoomJSLib('https://source.zoom.us/lib', '/av');
+                ZoomMtg.preLoadWasm();
+                ZoomMtg.prepareWebSDK();
+                
+                log('SDK prepared, initializing...');
+                
+                // Initialize
+                ZoomMtg.init({
+                    leaveUrl: window.location.origin,
+                    disablePreview: false,
+                    disableInvite: true,
+                    disableCallOut: true,
+                    disableRecord: true,
+                    disableJoinAudio: false,
+                    audioPanelAlwaysOpen: false,
+                    showMeetingTime: true,
+                    
+                    success: function(initResult) {
+                        console.log('SDK Init Success:', initResult);
+                        log('SDK initialized successfully! Joining meeting...');
+                        joinMeeting();
+                    },
+                    
+                    error: function(initError) {
+                        console.error('SDK Init Error:', initError);
+                        log('SDK initialization failed: ' + JSON.stringify(initError), true);
+                        
+                        if (initError && initError.errorMessage) {
+                            log('Init Error Details: ' + initError.errorMessage, true);
+                        }
+                        if (initError && initError.errorCode) {
+                            log('Init Error Code: ' + initError.errorCode, true);
+                        }
+                    }
+                });
+                
+            } catch (e) {
+                console.error('SDK Setup Exception:', e);
+                log('SDK setup failed: ' + e.message, true);
+            }
+        }
+
+        function joinMeeting() {
+            if (joinInProgress) {
+                log('Join already in progress');
+                return;
+            }
+            
+            joinInProgress = true;
+            log('Attempting to join meeting...');
+            
+            try {
+                const joinConfig = {
+                    signature: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZGtLZXkiOiIxWXlRdHpOU0RPdjQ4NnpxZ28ya1EiLCJtbiI6IjcxNTMxNTE3OTg3Iiwicm9sZSI6MCwiaWF0IjoxNzU2OTcyODAyLCJleHAiOjE3NTY5ODAwMDIsInRva2VuRXhwIjoxNzU2OTgwMDAyfQ.B6r5N2K_ewLVR1JyaDELeYQu1wwsDRrEHs4xRshDEE8',
+                    meetingNumber: '71531517987',
+                    userName: 'malaika AI Teacher',
+                    apiKey: '1YyQtzNSDOv486zqgo2kQ',
+                    userEmail: 'agent@example.com',
+                    passWord: 'aRyw9XYe0GPb4xPRbhZ07RamKzWU4d.1',
+                    
+                    success: function(joinResult) {
+                        console.log('Join Success:', joinResult);
+                        log('Successfully joined meeting!', false);
+                        document.getElementById('join-status').classList.add('success');
+                        
+                        setTimeout(() => {
+                            sendGreetingMessage();
+                        }, 5000);
+                    },
+                    
+                    error: function(joinError) {
+                        console.error('Join Error:', joinError);
+                        joinInProgress = false;
+                        
+                        let errorMsg = 'Join failed';
+                        if (joinError && joinError.errorMessage) {
+                            errorMsg += ': ' + joinError.errorMessage;
+                        }
+                        if (joinError && joinError.errorCode) {
+                            errorMsg += ' (Code: ' + joinError.errorCode + ')';
+                        }
+                        
+                        log(errorMsg, true);
+                        log('Full error: ' + JSON.stringify(joinError), true);
+                        
+                        // Common error codes
+                        if (joinError && joinError.errorCode) {
+                            switch(joinError.errorCode) {
+                                case 3001: log('Meeting not found or ended', true); break;
+                                case 3002: log('Meeting not started', true); break;
+                                case 3003: log('Meeting locked by host', true); break;
+                                case 3004: log('Invalid meeting password', true); break;
+                                case 3005: log('Meeting capacity reached', true); break;
+                                case 1: log('SDK signature verification failed', true); break;
+                                default: log('Unknown error code: ' + joinError.errorCode, true);
+                            }
+                        }
+                    }
+                };
+                
+                console.log('Join config:', joinConfig);
+                log('Calling ZoomMtg.join()...');
+                
+                ZoomMtg.join(joinConfig);
+                
+            } catch (e) {
+                console.error('Join Exception:', e);
+                joinInProgress = false;
+                log('Join exception: ' + e.message, true);
+            }
+        }
+
+        function sendGreetingMessage() {
+            try {
+                const message = 'Hello! malaika AI Teacher has joined the session and is ready to assist.';
+                
+                if (typeof ZoomMtg.sendChat === 'function') {
+                    ZoomMtg.sendChat({
+                        text: message,
+                        success: function() {
+                            log('Greeting message sent!');
+                        },
+                        error: function(chatError) {
+                            log('Chat failed: ' + JSON.stringify(chatError));
+                        }
+                    });
+                } else {
+                    log('Chat function not available');
+                }
+                
+            } catch (e) {
+                log('Chat exception: ' + e.message);
+            }
+        }
+
+        function openZoomApp() {
+            const zoomUrl = 'zoommtg://zoom.us/join?confno=71531517987&pwd=aRyw9XYe0GPb4xPRbhZ07RamKzWU4d.1';
+            log('Opening Zoom app with URL: ' + zoomUrl);
+            window.location.href = zoomUrl;
+        }
+
+        // Initialize when page loads
+        log('Page loaded, starting initialization...');
+        setTimeout(() => {
+            testSDKLoad();
+        }, 1000);
+    </script>
+</body>
+</html>
+        

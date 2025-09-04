@@ -1,0 +1,762 @@
+2025-09-04 12:57:51,423 - INFO - Starting Zoom SDK Agent...
+2025-09-04 12:57:51,424 - INFO - Checking for sessions at 2025-09-04 07:57:51.423733+00:00
+2025-09-04 12:57:51,424 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:57:51,424 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:57:53,187 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:57:53,193 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:57:53,194 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:57:53,194 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:57:53,606 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:57:53,608 - INFO -   ✅ Successfully created session
+2025-09-04 12:57:53,608 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:57:53,608 - INFO - Found 1 sessions for today
+2025-09-04 12:57:53,609 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:57:53,609 - INFO -   Current time: 2025-09-04 07:57:53.609011+00:00
+2025-09-04 12:57:53,609 - INFO -   Session start: 2025-09-04 07:30:00+00:00
+2025-09-04 12:57:53,609 - INFO -   Time until start: -1673.6 seconds
+2025-09-04 12:57:53,609 - INFO -   Should join: False
+2025-09-04 12:57:53,609 - INFO - Session AI with Scratch is too old, marking as processed
+2025-09-04 12:57:54,615 - INFO - Agent stopped by user
+2025-09-04 12:57:54,616 - INFO - Agent shutdown complete
+2025-09-04 12:58:11,332 - INFO - Starting Zoom SDK Agent...
+2025-09-04 12:58:11,332 - INFO - Checking for sessions at 2025-09-04 07:58:11.332528+00:00
+2025-09-04 12:58:11,332 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:58:11,332 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:58:11,776 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:58:11,782 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:58:11,783 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:58:11,783 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:58:12,742 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:58:12,744 - INFO -   ✅ Successfully created session
+2025-09-04 12:58:12,744 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:58:12,744 - INFO - Found 1 sessions for today
+2025-09-04 12:58:12,744 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:58:12,745 - INFO -   Current time: 2025-09-04 07:58:12.744856+00:00
+2025-09-04 12:58:12,745 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:58:12,745 - INFO -   Time until start: 107.3 seconds
+2025-09-04 12:58:12,745 - INFO -   Should join: False
+2025-09-04 12:58:12,745 - INFO - AI with Scratch starts in 1.8 minutes
+2025-09-04 12:58:22,747 - INFO - Checking for sessions at 2025-09-04 07:58:22.747734+00:00
+2025-09-04 12:58:22,749 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:58:22,749 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:58:23,164 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:58:23,166 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:58:23,166 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:58:23,166 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:58:24,142 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:58:24,145 - INFO -   ✅ Successfully created session
+2025-09-04 12:58:24,145 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:58:24,145 - INFO - Found 1 sessions for today
+2025-09-04 12:58:24,145 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:58:24,145 - INFO -   Current time: 2025-09-04 07:58:24.145574+00:00
+2025-09-04 12:58:24,145 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:58:24,145 - INFO -   Time until start: 95.9 seconds
+2025-09-04 12:58:24,145 - INFO -   Should join: False
+2025-09-04 12:58:24,145 - INFO - AI with Scratch starts in 1.6 minutes
+2025-09-04 12:58:34,148 - INFO - Checking for sessions at 2025-09-04 07:58:34.148729+00:00
+2025-09-04 12:58:34,149 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:58:34,149 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:58:34,673 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:58:34,675 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:58:34,675 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:58:34,675 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:58:35,632 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:58:35,634 - INFO -   ✅ Successfully created session
+2025-09-04 12:58:35,634 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:58:35,634 - INFO - Found 1 sessions for today
+2025-09-04 12:58:35,634 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:58:35,634 - INFO -   Current time: 2025-09-04 07:58:35.634585+00:00
+2025-09-04 12:58:35,634 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:58:35,634 - INFO -   Time until start: 84.4 seconds
+2025-09-04 12:58:35,634 - INFO -   Should join: False
+2025-09-04 12:58:35,635 - INFO - AI with Scratch starts in 1.4 minutes
+2025-09-04 12:58:45,636 - INFO - Checking for sessions at 2025-09-04 07:58:45.636218+00:00
+2025-09-04 12:58:45,638 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:58:45,638 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:58:46,030 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:58:46,031 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:58:46,032 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:58:46,032 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:58:46,377 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:58:46,378 - INFO -   ✅ Successfully created session
+2025-09-04 12:58:46,378 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:58:46,378 - INFO - Found 1 sessions for today
+2025-09-04 12:58:46,378 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:58:46,378 - INFO -   Current time: 2025-09-04 07:58:46.378697+00:00
+2025-09-04 12:58:46,378 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:58:46,378 - INFO -   Time until start: 73.6 seconds
+2025-09-04 12:58:46,378 - INFO -   Should join: False
+2025-09-04 12:58:46,379 - INFO - AI with Scratch starts in 1.2 minutes
+2025-09-04 12:58:56,384 - INFO - Checking for sessions at 2025-09-04 07:58:56.383829+00:00
+2025-09-04 12:58:56,384 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:58:56,385 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:58:56,893 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:58:56,894 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:58:56,894 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:58:56,895 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:58:57,251 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:58:57,252 - INFO -   ✅ Successfully created session
+2025-09-04 12:58:57,253 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:58:57,253 - INFO - Found 1 sessions for today
+2025-09-04 12:58:57,253 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:58:57,253 - INFO -   Current time: 2025-09-04 07:58:57.253281+00:00
+2025-09-04 12:58:57,253 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:58:57,253 - INFO -   Time until start: 62.7 seconds
+2025-09-04 12:58:57,253 - INFO -   Should join: False
+2025-09-04 12:58:57,253 - INFO - AI with Scratch starts in 1.1 minutes
+2025-09-04 12:59:07,258 - INFO - Checking for sessions at 2025-09-04 07:59:07.258034+00:00
+2025-09-04 12:59:07,259 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:59:07,259 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:59:07,732 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:59:07,734 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:59:07,734 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:59:07,734 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:59:08,093 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:59:08,094 - INFO -   ✅ Successfully created session
+2025-09-04 12:59:08,094 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:59:08,095 - INFO - Found 1 sessions for today
+2025-09-04 12:59:08,095 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:59:08,095 - INFO -   Current time: 2025-09-04 07:59:08.095243+00:00
+2025-09-04 12:59:08,095 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:59:08,095 - INFO -   Time until start: 51.9 seconds
+2025-09-04 12:59:08,095 - INFO -   Should join: False
+2025-09-04 12:59:08,096 - INFO - AI with Scratch starts in 0.9 minutes
+2025-09-04 12:59:18,096 - INFO - Checking for sessions at 2025-09-04 07:59:18.096412+00:00
+2025-09-04 12:59:18,097 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:59:18,097 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:59:18,531 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:59:18,533 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:59:18,533 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:59:18,533 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:59:18,909 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:59:18,910 - INFO -   ✅ Successfully created session
+2025-09-04 12:59:18,911 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:59:18,911 - INFO - Found 1 sessions for today
+2025-09-04 12:59:18,911 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:59:18,911 - INFO -   Current time: 2025-09-04 07:59:18.911520+00:00
+2025-09-04 12:59:18,913 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:59:18,913 - INFO -   Time until start: 41.1 seconds
+2025-09-04 12:59:18,913 - INFO -   Should join: False
+2025-09-04 12:59:18,913 - INFO - AI with Scratch starts in 0.7 minutes
+2025-09-04 12:59:28,918 - INFO - Checking for sessions at 2025-09-04 07:59:28.918381+00:00
+2025-09-04 12:59:28,919 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:59:28,919 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:59:29,316 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:59:29,318 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:59:29,318 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:59:29,318 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:59:29,681 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:59:29,682 - INFO -   ✅ Successfully created session
+2025-09-04 12:59:29,682 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:59:29,682 - INFO - Found 1 sessions for today
+2025-09-04 12:59:29,683 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:59:29,683 - INFO -   Current time: 2025-09-04 07:59:29.683064+00:00
+2025-09-04 12:59:29,683 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:59:29,683 - INFO -   Time until start: 30.3 seconds
+2025-09-04 12:59:29,683 - INFO -   Should join: False
+2025-09-04 12:59:29,683 - INFO - AI with Scratch starts in 0.5 minutes
+2025-09-04 12:59:39,689 - INFO - Checking for sessions at 2025-09-04 07:59:39.688162+00:00
+2025-09-04 12:59:39,691 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:59:39,691 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:59:40,435 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:59:40,458 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:59:40,458 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:59:40,458 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:59:40,833 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:59:40,833 - INFO -   ✅ Successfully created session
+2025-09-04 12:59:40,833 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:59:40,833 - INFO - Found 1 sessions for today
+2025-09-04 12:59:40,833 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:59:40,833 - INFO -   Current time: 2025-09-04 07:59:40.833861+00:00
+2025-09-04 12:59:40,833 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:59:40,833 - INFO -   Time until start: 19.2 seconds
+2025-09-04 12:59:40,833 - INFO -   Should join: False
+2025-09-04 12:59:40,834 - INFO - AI with Scratch starts in 0.3 minutes
+2025-09-04 12:59:50,840 - INFO - Checking for sessions at 2025-09-04 07:59:50.839240+00:00
+2025-09-04 12:59:50,843 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 12:59:50,843 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 12:59:51,223 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 12:59:51,226 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 12:59:51,226 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 12:59:51,226 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 12:59:51,558 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 12:59:51,560 - INFO -   ✅ Successfully created session
+2025-09-04 12:59:51,560 - INFO - 📊 Total sessions found: 1
+2025-09-04 12:59:51,560 - INFO - Found 1 sessions for today
+2025-09-04 12:59:51,560 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 12:59:51,560 - INFO -   Current time: 2025-09-04 07:59:51.560660+00:00
+2025-09-04 12:59:51,560 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 12:59:51,560 - INFO -   Time until start: 8.4 seconds
+2025-09-04 12:59:51,560 - INFO -   Should join: False
+2025-09-04 12:59:51,561 - INFO - AI with Scratch starts in 0.2 minutes
+2025-09-04 13:00:01,561 - INFO - Checking for sessions at 2025-09-04 08:00:01.561680+00:00
+2025-09-04 13:00:01,562 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:00:01,562 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:00:01,954 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:00:01,955 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:00:01,956 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:00:01,956 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:00:02,337 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:00:02,339 - INFO -   ✅ Successfully created session
+2025-09-04 13:00:02,339 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:00:02,339 - INFO - Found 1 sessions for today
+2025-09-04 13:00:02,339 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 13:00:02,339 - INFO -   Current time: 2025-09-04 08:00:02.339522+00:00
+2025-09-04 13:00:02,339 - INFO -   Session start: 2025-09-04 08:00:00+00:00
+2025-09-04 13:00:02,339 - INFO -   Time until start: -2.3 seconds
+2025-09-04 13:00:02,340 - INFO -   Should join: True
+2025-09-04 13:00:02,340 - INFO - TIME TO JOIN: AI with Scratch
+2025-09-04 13:00:02,340 - INFO - 🎯 JOINING MEETING WITH SDK: AI with Scratch
+2025-09-04 13:00:02,340 - INFO - 👤 Agent: malaika AI Teacher
+2025-09-04 13:00:02,340 - INFO - 🔢 Meeting ID: 71531517987
+2025-09-04 13:00:02,341 - INFO - Generated Web SDK signature
+2025-09-04 13:00:02,341 - INFO - Meeting number: 71531517987
+2025-09-04 13:00:02,341 - INFO - SDK Key: 1YyQtzNSDOv486zqgo2kQ
+2025-09-04 13:00:02,341 - INFO - Signature preview: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZGtLZXkiO...
+2025-09-04 13:00:02,344 - INFO - Saved join page: zoom_join_10f9b1b4-1784-4322-92f2-ea6658983ea3_1756972802.html
+2025-09-04 13:00:02,344 - INFO - File path: /Users/malaikahussain/Documents/knodemy/ai-agent/zoom_join_10f9b1b4-1784-4322-92f2-ea6658983ea3_1756972802.html
+2025-09-04 13:00:02,603 - INFO - Opened browser successfully
+2025-09-04 13:00:02,603 - INFO - ✅ Created Web SDK join page
+2025-09-04 13:00:02,603 - INFO - 🌐 Meeting join page: zoom_join_10f9b1b4-1784-4322-92f2-ea6658983ea3_1756972802.html
+2025-09-04 13:00:02,603 - INFO - Successfully initiated SDK join
+2025-09-04 13:00:12,610 - INFO - Checking for sessions at 2025-09-04 08:00:12.608856+00:00
+2025-09-04 13:00:12,612 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:00:12,613 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:00:13,009 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:00:13,011 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:00:13,011 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:00:13,011 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:00:13,360 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:00:13,362 - INFO -   ✅ Successfully created session
+2025-09-04 13:00:13,362 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:00:13,362 - INFO - Found 1 sessions for today
+2025-09-04 13:00:23,362 - INFO - Checking for sessions at 2025-09-04 08:00:23.362704+00:00
+2025-09-04 13:00:23,364 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:00:23,364 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:00:23,746 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:00:23,747 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:00:23,747 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:00:23,747 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:00:24,084 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:00:24,085 - INFO -   ✅ Successfully created session
+2025-09-04 13:00:24,085 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:00:24,085 - INFO - Found 1 sessions for today
+2025-09-04 13:00:34,086 - INFO - Checking for sessions at 2025-09-04 08:00:34.086030+00:00
+2025-09-04 13:00:34,088 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:00:34,088 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:00:34,543 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:00:34,545 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:00:34,545 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:00:34,545 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:00:34,899 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:00:34,900 - INFO -   ✅ Successfully created session
+2025-09-04 13:00:34,900 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:00:34,900 - INFO - Found 1 sessions for today
+2025-09-04 13:00:44,901 - INFO - Checking for sessions at 2025-09-04 08:00:44.900605+00:00
+2025-09-04 13:00:44,902 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:00:44,903 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:00:45,315 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:00:45,317 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:00:45,317 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:00:45,317 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:00:45,667 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:00:45,668 - INFO -   ✅ Successfully created session
+2025-09-04 13:00:45,668 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:00:45,668 - INFO - Found 1 sessions for today
+2025-09-04 13:00:55,672 - INFO - Checking for sessions at 2025-09-04 08:00:55.671610+00:00
+2025-09-04 13:00:55,675 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:00:55,676 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:00:56,076 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:00:56,079 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:00:56,079 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:00:56,079 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:00:56,438 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:00:56,439 - INFO -   ✅ Successfully created session
+2025-09-04 13:00:56,440 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:00:56,440 - INFO - Found 1 sessions for today
+2025-09-04 13:01:06,445 - INFO - Checking for sessions at 2025-09-04 08:01:06.444883+00:00
+2025-09-04 13:01:06,449 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:01:06,450 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:01:06,852 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:01:06,856 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:01:06,856 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:01:06,857 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:01:07,224 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:01:07,225 - INFO -   ✅ Successfully created session
+2025-09-04 13:01:07,225 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:01:07,226 - INFO - Found 1 sessions for today
+2025-09-04 13:01:16,579 - INFO - Agent stopped by user
+2025-09-04 13:01:16,580 - INFO - Agent shutdown complete
+2025-09-04 13:04:44,361 - INFO - Starting Zoom SDK Agent...
+2025-09-04 13:04:44,361 - INFO - Checking for sessions at 2025-09-04 08:04:44.361393+00:00
+2025-09-04 13:04:44,361 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:04:44,361 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:04:45,193 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:04:45,200 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:04:45,200 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:04:45,200 - INFO - 📋 Meeting ID: 71531517987, Password: ***
+2025-09-04 13:04:45,666 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:04:45,668 - INFO -   ✅ Successfully created session
+2025-09-04 13:04:45,669 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:04:45,669 - INFO - Found 1 sessions for today
+2025-09-04 13:04:45,669 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 13:04:45,669 - INFO -   Current time: 2025-09-04 08:04:45.669296+00:00
+2025-09-04 13:04:45,669 - INFO -   Session start: 2025-09-04 08:06:00+00:00
+2025-09-04 13:04:45,669 - INFO -   Time until start: 74.3 seconds
+2025-09-04 13:04:45,669 - INFO -   Should join: False
+2025-09-04 13:04:45,669 - INFO - AI with Scratch starts in 1.3 minutes
+2025-09-04 13:04:49,925 - INFO - Agent stopped by user
+2025-09-04 13:04:49,925 - INFO - Agent shutdown complete
+2025-09-04 13:07:18,922 - INFO - Starting Zoom SDK Agent...
+2025-09-04 13:07:18,922 - INFO - Checking for sessions at 2025-09-04 08:07:18.922586+00:00
+2025-09-04 13:07:18,922 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:07:18,922 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:07:20,549 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:07:20,554 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:07:20,554 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:07:20,555 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:07:20,930 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:07:20,932 - INFO -   ✅ Successfully created session
+2025-09-04 13:07:20,932 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:07:20,933 - INFO - Found 1 sessions for today
+2025-09-04 13:07:20,933 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 13:07:20,933 - INFO -   Current time: 2025-09-04 08:07:20.933158+00:00
+2025-09-04 13:07:20,933 - INFO -   Session start: 2025-09-04 08:08:00+00:00
+2025-09-04 13:07:20,933 - INFO -   Time until start: 39.1 seconds
+2025-09-04 13:07:20,933 - INFO -   Should join: False
+2025-09-04 13:07:20,933 - INFO - AI with Scratch starts in 0.7 minutes
+2025-09-04 13:07:30,938 - INFO - Checking for sessions at 2025-09-04 08:07:30.938421+00:00
+2025-09-04 13:07:30,939 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:07:30,939 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:07:31,355 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:07:31,357 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:07:31,357 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:07:31,358 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:07:31,718 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:07:31,719 - INFO -   ✅ Successfully created session
+2025-09-04 13:07:31,719 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:07:31,720 - INFO - Found 1 sessions for today
+2025-09-04 13:07:31,720 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 13:07:31,720 - INFO -   Current time: 2025-09-04 08:07:31.720223+00:00
+2025-09-04 13:07:31,720 - INFO -   Session start: 2025-09-04 08:08:00+00:00
+2025-09-04 13:07:31,720 - INFO -   Time until start: 28.3 seconds
+2025-09-04 13:07:31,720 - INFO -   Should join: False
+2025-09-04 13:07:31,720 - INFO - AI with Scratch starts in 0.5 minutes
+2025-09-04 13:07:41,725 - INFO - Checking for sessions at 2025-09-04 08:07:41.725481+00:00
+2025-09-04 13:07:41,726 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:07:41,726 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:07:42,197 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:07:42,199 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:07:42,199 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:07:42,199 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:07:42,546 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:07:42,548 - INFO -   ✅ Successfully created session
+2025-09-04 13:07:42,548 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:07:42,548 - INFO - Found 1 sessions for today
+2025-09-04 13:07:42,548 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 13:07:42,548 - INFO -   Current time: 2025-09-04 08:07:42.548549+00:00
+2025-09-04 13:07:42,548 - INFO -   Session start: 2025-09-04 08:08:00+00:00
+2025-09-04 13:07:42,549 - INFO -   Time until start: 17.5 seconds
+2025-09-04 13:07:42,549 - INFO -   Should join: False
+2025-09-04 13:07:42,549 - INFO - AI with Scratch starts in 0.3 minutes
+2025-09-04 13:07:52,552 - INFO - Checking for sessions at 2025-09-04 08:07:52.552595+00:00
+2025-09-04 13:07:52,553 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:07:52,553 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:07:52,970 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:07:52,972 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:07:52,972 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:07:52,972 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:07:53,346 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:07:53,348 - INFO -   ✅ Successfully created session
+2025-09-04 13:07:53,348 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:07:53,348 - INFO - Found 1 sessions for today
+2025-09-04 13:07:53,349 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 13:07:53,349 - INFO -   Current time: 2025-09-04 08:07:53.348972+00:00
+2025-09-04 13:07:53,349 - INFO -   Session start: 2025-09-04 08:08:00+00:00
+2025-09-04 13:07:53,349 - INFO -   Time until start: 6.7 seconds
+2025-09-04 13:07:53,349 - INFO -   Should join: False
+2025-09-04 13:07:53,349 - INFO - AI with Scratch starts in 0.1 minutes
+2025-09-04 13:08:03,349 - INFO - Checking for sessions at 2025-09-04 08:08:03.349485+00:00
+2025-09-04 13:08:03,351 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:08:03,351 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:08:03,748 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:08:03,749 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:08:03,749 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:08:03,750 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:08:04,216 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:08:04,218 - INFO -   ✅ Successfully created session
+2025-09-04 13:08:04,218 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:08:04,218 - INFO - Found 1 sessions for today
+2025-09-04 13:08:04,218 - INFO - ⏰ Join check for AI with Scratch:
+2025-09-04 13:08:04,218 - INFO -   Current time: 2025-09-04 08:08:04.218539+00:00
+2025-09-04 13:08:04,218 - INFO -   Session start: 2025-09-04 08:08:00+00:00
+2025-09-04 13:08:04,218 - INFO -   Time until start: -4.2 seconds
+2025-09-04 13:08:04,218 - INFO -   Should join: True
+2025-09-04 13:08:04,219 - INFO - TIME TO JOIN: AI with Scratch
+2025-09-04 13:08:04,219 - INFO - 🎯 JOINING MEETING WITH SDK: AI with Scratch
+2025-09-04 13:08:04,219 - INFO - 👤 Agent: malaika AI Teacher
+2025-09-04 13:08:04,219 - INFO - 🔢 Meeting ID: 78227379066
+2025-09-04 13:08:04,219 - INFO - Generated Web SDK signature
+2025-09-04 13:08:04,220 - INFO - Meeting number: 78227379066
+2025-09-04 13:08:04,220 - INFO - SDK Key: 1YyQtzNSDOv486zqgo2kQ
+2025-09-04 13:08:04,220 - INFO - Signature preview: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZGtLZXkiO...
+2025-09-04 13:08:04,223 - INFO - Saved join page: zoom_join_10f9b1b4-1784-4322-92f2-ea6658983ea3_1756973284.html
+2025-09-04 13:08:04,224 - INFO - File path: /Users/malaikahussain/Documents/knodemy/ai-agent/zoom_join_10f9b1b4-1784-4322-92f2-ea6658983ea3_1756973284.html
+2025-09-04 13:08:04,549 - INFO - Opened browser successfully
+2025-09-04 13:08:04,549 - INFO - ✅ Created Web SDK join page
+2025-09-04 13:08:04,549 - INFO - 🌐 Meeting join page: zoom_join_10f9b1b4-1784-4322-92f2-ea6658983ea3_1756973284.html
+2025-09-04 13:08:04,549 - INFO - Successfully initiated SDK join
+2025-09-04 13:08:14,556 - INFO - Checking for sessions at 2025-09-04 08:08:14.554874+00:00
+2025-09-04 13:08:14,559 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:08:14,559 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:08:14,942 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:08:14,944 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:08:14,945 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:08:14,945 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:08:15,298 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:08:15,299 - INFO -   ✅ Successfully created session
+2025-09-04 13:08:15,300 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:08:15,300 - INFO - Found 1 sessions for today
+2025-09-04 13:08:25,305 - INFO - Checking for sessions at 2025-09-04 08:08:25.304991+00:00
+2025-09-04 13:08:25,306 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:08:25,307 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:08:25,719 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:08:25,720 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:08:25,721 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:08:25,721 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:08:26,333 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:08:26,333 - INFO -   ✅ Successfully created session
+2025-09-04 13:08:26,333 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:08:26,333 - INFO - Found 1 sessions for today
+2025-09-04 13:08:36,341 - INFO - Checking for sessions at 2025-09-04 08:08:36.340009+00:00
+2025-09-04 13:08:36,342 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:08:36,342 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:08:37,779 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:08:37,782 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:08:37,783 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:08:37,783 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:08:38,125 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:08:38,126 - INFO -   ✅ Successfully created session
+2025-09-04 13:08:38,126 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:08:38,126 - INFO - Found 1 sessions for today
+2025-09-04 13:08:48,137 - INFO - Checking for sessions at 2025-09-04 08:08:48.133421+00:00
+2025-09-04 13:08:48,141 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:08:48,141 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:08:48,631 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:08:48,632 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:08:48,632 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:08:48,632 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:08:48,982 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:08:48,983 - INFO -   ✅ Successfully created session
+2025-09-04 13:08:48,983 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:08:48,983 - INFO - Found 1 sessions for today
+2025-09-04 13:08:58,985 - INFO - Checking for sessions at 2025-09-04 08:08:58.984378+00:00
+2025-09-04 13:08:58,987 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:08:58,987 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:08:59,375 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:08:59,377 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:08:59,377 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:08:59,377 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:08:59,793 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:08:59,794 - INFO -   ✅ Successfully created session
+2025-09-04 13:08:59,795 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:08:59,795 - INFO - Found 1 sessions for today
+2025-09-04 13:09:09,800 - INFO - Checking for sessions at 2025-09-04 08:09:09.799998+00:00
+2025-09-04 13:09:09,801 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:09:09,801 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:09:10,393 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:09:10,394 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:09:10,395 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:09:10,395 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:09:10,798 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:09:10,799 - INFO -   ✅ Successfully created session
+2025-09-04 13:09:10,799 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:09:10,799 - INFO - Found 1 sessions for today
+2025-09-04 13:09:20,804 - INFO - Checking for sessions at 2025-09-04 08:09:20.804494+00:00
+2025-09-04 13:09:20,806 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:09:20,806 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:09:21,323 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:09:21,324 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:09:21,325 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:09:21,325 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:09:21,658 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:09:21,659 - INFO -   ✅ Successfully created session
+2025-09-04 13:09:21,659 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:09:21,659 - INFO - Found 1 sessions for today
+2025-09-04 13:09:31,665 - INFO - Checking for sessions at 2025-09-04 08:09:31.664739+00:00
+2025-09-04 13:09:31,667 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:09:31,668 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:09:32,163 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:09:32,165 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:09:32,166 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:09:32,166 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:09:32,543 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:09:32,545 - INFO -   ✅ Successfully created session
+2025-09-04 13:09:32,545 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:09:32,545 - INFO - Found 1 sessions for today
+2025-09-04 13:09:42,548 - INFO - Checking for sessions at 2025-09-04 08:09:42.547711+00:00
+2025-09-04 13:09:42,551 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:09:42,563 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:09:42,920 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:09:42,922 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:09:42,922 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:09:42,923 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:09:43,308 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:09:43,310 - INFO -   ✅ Successfully created session
+2025-09-04 13:09:43,310 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:09:43,310 - INFO - Found 1 sessions for today
+2025-09-04 13:09:53,311 - INFO - Checking for sessions at 2025-09-04 08:09:53.311156+00:00
+2025-09-04 13:09:53,313 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:09:53,313 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:09:53,680 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:09:53,681 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:09:53,681 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:09:53,682 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:09:54,006 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:09:54,008 - INFO -   ✅ Successfully created session
+2025-09-04 13:09:54,008 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:09:54,008 - INFO - Found 1 sessions for today
+2025-09-04 13:10:04,010 - INFO - Checking for sessions at 2025-09-04 08:10:04.010174+00:00
+2025-09-04 13:10:04,010 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:10:04,010 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:10:04,444 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:10:04,445 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:10:04,445 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:10:04,445 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:10:04,803 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:10:04,804 - INFO -   ✅ Successfully created session
+2025-09-04 13:10:04,804 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:10:04,804 - INFO - Found 1 sessions for today
+2025-09-04 13:10:14,807 - INFO - Checking for sessions at 2025-09-04 08:10:14.806745+00:00
+2025-09-04 13:10:14,808 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:10:14,808 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:10:15,192 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:10:15,193 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:10:15,194 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:10:15,194 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:10:15,624 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:10:15,625 - INFO -   ✅ Successfully created session
+2025-09-04 13:10:15,626 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:10:15,626 - INFO - Found 1 sessions for today
+2025-09-04 13:10:25,626 - INFO - Checking for sessions at 2025-09-04 08:10:25.626614+00:00
+2025-09-04 13:10:25,627 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:10:25,627 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:10:25,998 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:10:25,999 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:10:25,999 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:10:25,999 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:10:26,342 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:10:26,344 - INFO -   ✅ Successfully created session
+2025-09-04 13:10:26,344 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:10:26,344 - INFO - Found 1 sessions for today
+2025-09-04 13:10:36,348 - INFO - Checking for sessions at 2025-09-04 08:10:36.348791+00:00
+2025-09-04 13:10:36,349 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:10:36,349 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:10:36,787 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:10:36,788 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:10:36,788 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:10:36,788 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:10:37,155 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:10:37,157 - INFO -   ✅ Successfully created session
+2025-09-04 13:10:37,157 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:10:37,157 - INFO - Found 1 sessions for today
+2025-09-04 13:10:47,162 - INFO - Checking for sessions at 2025-09-04 08:10:47.162292+00:00
+2025-09-04 13:10:47,164 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:10:47,164 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:10:47,621 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:10:47,623 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:10:47,623 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:10:47,623 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:10:47,963 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:10:47,964 - INFO -   ✅ Successfully created session
+2025-09-04 13:10:47,964 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:10:47,964 - INFO - Found 1 sessions for today
+2025-09-04 13:10:57,969 - INFO - Checking for sessions at 2025-09-04 08:10:57.969439+00:00
+2025-09-04 13:10:57,970 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:10:57,970 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:10:58,498 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:10:58,500 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:10:58,500 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:10:58,500 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:10:58,838 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:10:58,839 - INFO -   ✅ Successfully created session
+2025-09-04 13:10:58,839 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:10:58,839 - INFO - Found 1 sessions for today
+2025-09-04 13:11:08,845 - INFO - Checking for sessions at 2025-09-04 08:11:08.844807+00:00
+2025-09-04 13:11:08,848 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:11:08,848 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:11:09,287 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:11:09,289 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:11:09,289 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:11:09,289 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:11:09,629 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:11:09,630 - INFO -   ✅ Successfully created session
+2025-09-04 13:11:09,630 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:11:09,630 - INFO - Found 1 sessions for today
+2025-09-04 13:11:19,636 - INFO - Checking for sessions at 2025-09-04 08:11:19.635606+00:00
+2025-09-04 13:11:19,638 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:11:19,638 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:11:20,044 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:11:20,046 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:11:20,046 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:11:20,046 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:11:20,406 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:11:20,407 - INFO -   ✅ Successfully created session
+2025-09-04 13:11:20,407 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:11:20,407 - INFO - Found 1 sessions for today
+2025-09-04 13:11:30,412 - INFO - Checking for sessions at 2025-09-04 08:11:30.411255+00:00
+2025-09-04 13:11:30,416 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:11:30,417 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:11:30,858 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:11:30,859 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:11:30,860 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:11:30,860 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:11:31,203 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:11:31,204 - INFO -   ✅ Successfully created session
+2025-09-04 13:11:31,205 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:11:31,205 - INFO - Found 1 sessions for today
+2025-09-04 13:11:41,208 - INFO - Checking for sessions at 2025-09-04 08:11:41.207677+00:00
+2025-09-04 13:11:41,210 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:11:41,210 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:11:41,641 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:11:41,644 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:11:41,645 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:11:41,645 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:11:42,005 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:11:42,007 - INFO -   ✅ Successfully created session
+2025-09-04 13:11:42,007 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:11:42,007 - INFO - Found 1 sessions for today
+2025-09-04 13:11:52,009 - INFO - Checking for sessions at 2025-09-04 08:11:52.008990+00:00
+2025-09-04 13:11:52,011 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:11:52,011 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:11:52,423 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:11:52,427 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:11:52,427 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:11:52,427 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:11:52,808 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:11:52,809 - INFO -   ✅ Successfully created session
+2025-09-04 13:11:52,809 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:11:52,809 - INFO - Found 1 sessions for today
+2025-09-04 13:12:02,814 - INFO - Checking for sessions at 2025-09-04 08:12:02.813754+00:00
+2025-09-04 13:12:02,815 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:12:02,815 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:12:03,295 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:12:03,296 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:12:03,296 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:12:03,296 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:12:03,647 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:12:03,648 - INFO -   ✅ Successfully created session
+2025-09-04 13:12:03,648 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:12:03,648 - INFO - Found 1 sessions for today
+2025-09-04 13:12:13,654 - INFO - Checking for sessions at 2025-09-04 08:12:13.653926+00:00
+2025-09-04 13:12:13,656 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:12:13,656 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:12:14,026 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:12:14,027 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:12:14,027 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:12:14,028 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:12:14,370 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:12:14,371 - INFO -   ✅ Successfully created session
+2025-09-04 13:12:14,371 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:12:14,371 - INFO - Found 1 sessions for today
+2025-09-04 13:12:24,374 - INFO - Checking for sessions at 2025-09-04 08:12:24.374724+00:00
+2025-09-04 13:12:24,375 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:12:24,375 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:12:24,786 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:12:24,788 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:12:24,788 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:12:24,788 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:12:25,136 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:12:25,137 - INFO -   ✅ Successfully created session
+2025-09-04 13:12:25,137 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:12:25,138 - INFO - Found 1 sessions for today
+2025-09-04 13:12:35,143 - INFO - Checking for sessions at 2025-09-04 08:12:35.143069+00:00
+2025-09-04 13:12:35,145 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:12:35,145 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:12:35,518 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:12:35,520 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:12:35,520 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:12:35,520 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:12:35,852 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:12:35,853 - INFO -   ✅ Successfully created session
+2025-09-04 13:12:35,853 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:12:35,854 - INFO - Found 1 sessions for today
+2025-09-04 13:12:45,859 - INFO - Checking for sessions at 2025-09-04 08:12:45.858624+00:00
+2025-09-04 13:12:45,861 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:12:45,862 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:12:46,405 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:12:46,406 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:12:46,407 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:12:46,407 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:12:46,814 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:12:46,815 - INFO -   ✅ Successfully created session
+2025-09-04 13:12:46,815 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:12:46,815 - INFO - Found 1 sessions for today
+2025-09-04 13:12:56,821 - INFO - Checking for sessions at 2025-09-04 08:12:56.820376+00:00
+2025-09-04 13:12:56,823 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:12:56,823 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:12:57,294 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:12:57,304 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:12:57,305 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:12:57,305 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:12:57,640 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:12:57,641 - INFO -   ✅ Successfully created session
+2025-09-04 13:12:57,641 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:12:57,641 - INFO - Found 1 sessions for today
+2025-09-04 13:13:07,647 - INFO - Checking for sessions at 2025-09-04 08:13:07.646543+00:00
+2025-09-04 13:13:07,649 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:13:07,649 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:13:08,032 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:13:08,035 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:13:08,039 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:13:08,039 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:13:08,382 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:13:08,383 - INFO -   ✅ Successfully created session
+2025-09-04 13:13:08,383 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:13:08,383 - INFO - Found 1 sessions for today
+2025-09-04 13:13:18,387 - INFO - Checking for sessions at 2025-09-04 08:13:18.387287+00:00
+2025-09-04 13:13:18,388 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:13:18,388 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:13:18,798 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:13:18,799 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:13:18,799 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:13:18,799 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:13:19,195 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:13:19,197 - INFO -   ✅ Successfully created session
+2025-09-04 13:13:19,197 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:13:19,197 - INFO - Found 1 sessions for today
+2025-09-04 13:13:29,200 - INFO - Checking for sessions at 2025-09-04 08:13:29.200233+00:00
+2025-09-04 13:13:29,202 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:13:29,202 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:13:29,803 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:13:29,805 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:13:29,805 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:13:29,805 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:13:30,152 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:13:30,153 - INFO -   ✅ Successfully created session
+2025-09-04 13:13:30,153 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:13:30,153 - INFO - Found 1 sessions for today
+2025-09-04 13:13:40,158 - INFO - Checking for sessions at 2025-09-04 08:13:40.157463+00:00
+2025-09-04 13:13:40,161 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:13:40,161 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:13:40,647 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:13:40,649 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:13:40,649 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:13:40,649 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:13:40,995 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:13:40,997 - INFO -   ✅ Successfully created session
+2025-09-04 13:13:40,997 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:13:40,997 - INFO - Found 1 sessions for today
+2025-09-04 13:13:51,002 - INFO - Checking for sessions at 2025-09-04 08:13:51.000930+00:00
+2025-09-04 13:13:51,005 - INFO - 📅 Today's date: 2025-09-04
+2025-09-04 13:13:51,005 - INFO - 🔍 Looking for sessions on: 2025-09-04
+2025-09-04 13:13:51,392 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/courses?select=id%2Ctitle%2Cteacher_id%2Cstart_date%2Cnextsession%2Cstart_time%2CzoomLink&or=%28start_date.eq.2025-09-04%2Cnextsession.eq.2025-09-04%29 "HTTP/2 200 OK"
+2025-09-04 13:13:51,393 - INFO - 📊 Database query completed. Found 1 courses
+2025-09-04 13:13:51,393 - INFO - 🔄 Processing course 1: AI with Scratch
+2025-09-04 13:13:51,394 - INFO - 📋 Meeting ID: 78227379066, Password: ***
+2025-09-04 13:13:51,825 - INFO - HTTP Request: GET https://xuxdxozihbumbqofxctt.supabase.co/rest/v1/agent_instances?select=agent_name&current_teacher_id=eq.5132405f-ee23-4be5-90e0-bdc4cc353bcd "HTTP/2 200 OK"
+2025-09-04 13:13:51,827 - INFO -   ✅ Successfully created session
+2025-09-04 13:13:51,827 - INFO - 📊 Total sessions found: 1
+2025-09-04 13:13:51,827 - INFO - Found 1 sessions for today
+2025-09-04 13:13:55,858 - INFO - Agent stopped by user
+2025-09-04 13:13:55,859 - INFO - Agent shutdown complete
