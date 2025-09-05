@@ -9,6 +9,7 @@ from typing import Optional, List, Dict
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Body, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import BackgroundTasks
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 from supabase import create_client
 
@@ -64,7 +65,7 @@ origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_origin_regex=r"^https://([a-z0-9-]+\.)?knodemy\.ai$"
+    allow_origin_regex=r"^https://([a-z0-9-]+\.)?knodemy\.ai$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
