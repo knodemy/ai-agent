@@ -9,6 +9,7 @@ from typing import Optional, List, Dict
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Body, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import BackgroundTasks
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 from supabase import create_client
 
