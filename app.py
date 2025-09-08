@@ -528,27 +528,36 @@ async def shutdown_scheduler():
 async def get_teacher_lessons(teacher_id: str = Query(...)):
     """Get lessons for a specific teacher"""
     try:
+        logger.info(f"Fetching lessons for teacher_id: {teacher_id}")
         client = SupabaseClient(teacher_id=teacher_id)
         
-        # Get courses and lessons for this teacher
-        # This depends on your SupabaseClient implementation
-        courses = client.get_teacher_courses()  # You need to implement this method
+        # Use the existing method that gets all teacher data
+        teacher_data = client.get_all_teacher_lessons_with_courses()
         
-        return {"courses": courses}
+        if 'error' in teacher_data:
+            raise HTTPException(status_code=404, detail=teacher_data['error'])
+        
+        return {"courses": teacher_data.get('courses', [])}
     except Exception as e:
         logger.error(f"Error fetching teacher lessons: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Exception type: {type(e).__name__}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch lessons: {str(e)}")
 
 @app.get("/teacher/info")
 async def get_teacher_info(teacher_id: str = Query(...)):
     """Get teacher information"""
     try:
+        logger.info(f"Fetching info for teacher_id: {teacher_id}")
         client = SupabaseClient(teacher_id=teacher_id)
         teacher_info = client.get_teacher_info()
+        
+        if 'error' in teacher_info:
+            raise HTTPException(status_code=404, detail=teacher_info['error'])
+            
         return teacher_info
     except Exception as e:
         logger.error(f"Error fetching teacher info: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Failed to fetch teacher info: {str(e)}")
 
 @app.get("/health")
 async def health_check():
@@ -559,7 +568,6 @@ async def health_check():
 async def root():
     """Root endpoint"""
     return {"message": "Automated Teacher Lectures API", "status": "running"}
-
 
 if __name__ == "__main__":
     import uvicorn
