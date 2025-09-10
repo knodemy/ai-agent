@@ -783,38 +783,71 @@ async def shutdown_scheduler():
 
 @app.get("/teacher/lessons")
 async def get_teacher_lessons(teacher_id: str = Query(...)):
-    """Get lessons for a specific teacher"""
+    """Get lessons/courses for a specific teacher"""
     try:
-        logger.info(f"Fetching lessons for teacher_id: {teacher_id}")
-        client = SupabaseClient(teacher_id=teacher_id)
-        
-        # Use the existing method that gets all teacher data
-        teacher_data = client.get_all_teacher_lessons_with_courses()
-        
-        if 'error' in teacher_data:
-            raise HTTPException(status_code=404, detail=teacher_data['error'])
-        
-        return {"courses": teacher_data.get('courses', [])}
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
+        supabase = create_client(url, key)
+
+        # Get courses for this teacher - only select columns that exist
+        response = supabase.table('courses').select(
+            'id, title, description, start_date, end_date'
+        ).eq('teacher_id', teacher_id).execute()
+
+        courses = response.data or []
+
+        # Calculate lesson count for each course
+        for course in courses:
+            try:
+                # Get actual lesson count from lessons table
+                lessons_response = supabase.table('lessons').select(
+                    'id'
+                ).eq('course_id', course['id']).execute()
+                course['lesson_count'] = len(lessons_response.data or [])
+            except Exception as e:
+                logger.warning(f"Could not get lesson count for course {course['id']}: {e}")
+                course['lesson_count'] = 0
+
+        return {"courses": courses}
+
     except Exception as e:
         logger.error(f"Error fetching teacher lessons: {e}")
-        logger.error(f"Exception type: {type(e).__name__}")
-        raise HTTPException(status_code=500, detail=f"Failed to fetch lessons: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 
 @app.get("/teacher/info")
 async def get_teacher_info(teacher_id: str = Query(...)):
     """Get teacher information"""
     try:
-        logger.info(f"Fetching info for teacher_id: {teacher_id}")
-        client = SupabaseClient(teacher_id=teacher_id)
-        teacher_info = client.get_teacher_info()
-        
-        if 'error' in teacher_info:
-            raise HTTPException(status_code=404, detail=teacher_info['error'])
-            
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
+        supabase = create_client(url, key)
+
+        # Get teacher info from users table - only select columns that exist
+        response = supabase.table('users').select(
+            'id, email, first_name, last_name'
+        ).eq('id', teacher_id).execute()
+
+        if not response.data:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+
+        teacher_info = response.data[0]
+
+        # Create a name field from first_name and last_name
+        first_name = teacher_info.get('first_name', '')
+        last_name = teacher_info.get('last_name', '')
+        teacher_info['name'] = f"{first_name} {last_name}".strip() or "Teacher"
+
         return teacher_info
+
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Error fetching teacher info: {e}")
-        raise HTTPException(status_code=500, detail=f"Failed to fetch teacher info: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+        
 
 @app.get("/health")
 async def health_check():
