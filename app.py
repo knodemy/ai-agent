@@ -1,17 +1,20 @@
-# Enhanced app.py with automated lecture generation
+# Enhanced app.py with automated lecture generation and Zoom SDK integration
 import os
 import io
 import json
 import logging
+import time
 from datetime import datetime, timedelta, date
 from typing import Optional, List, Dict
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Body, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 from fastapi import BackgroundTasks
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 from supabase import create_client
+import jwt
 
 # APScheduler imports
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -59,7 +62,7 @@ origins = [
     "http://127.0.0.1:8080",
     "http://127.0.0.1:3000",
     "https://teacher.knodemy.ai",
-    "https://devteacher.knodemy.ai"
+    "https://devteacher.knodemy.ai",
 ]
 
 app.add_middleware(
@@ -78,8 +81,21 @@ SIGN_URLS = os.getenv("SIGN_URLS", "true").lower() == "true"
 SIGN_EXPIRES_SECONDS = int(os.getenv("SIGN_EXPIRES_SECONDS", "3600"))
 GENERATE_TIMED_AUDIO = os.getenv("GENERATE_TIMED_AUDIO", "true").lower() == "true"
 
+# Zoom SDK configuration
+ZOOM_SDK_KEY = os.getenv("ZOOM_SDK_KEY")
+ZOOM_SDK_SECRET = os.getenv("ZOOM_SDK_SECRET")
+
+# Validate Zoom credentials
+if not ZOOM_SDK_KEY or not ZOOM_SDK_SECRET:
+    logger.warning("Missing ZOOM_SDK_KEY/ZOOM_SDK_SECRET - Zoom signature generation will be disabled")
+
 # Initialize scheduler
 scheduler = AsyncIOScheduler()
+
+# Pydantic models
+class SignatureReq(BaseModel):
+    meetingNumber: str  # e.g., "123456789"
+    role: int  # 0=attendee, 1=host
 
 # Helper functions
 def get_tomorrow_date() -> str:
@@ -94,6 +110,7 @@ def get_today_date() -> str:
 def _build_bucket_path(teacher_id: str, course_id: str, lesson_id: str, date: str, ext: str = "pdf") -> str:
     """Build structured bucket path with date"""
     return f"{teacher_id}/{course_id}/{date}/{lesson_id}_script.{ext}"
+
 
 async def get_courses_for_target_date(target_date: str) -> List[dict]:
     """
@@ -413,7 +430,126 @@ async def scheduled_daily_lecture_generation():
     logger.info(f"Running scheduled lecture generation for {today}")
     await generate_lectures_for_date(today)
 
-# API ENDPOINTS
+
+@app.get("/zoom/join", response_class=HTMLResponse)
+async def zoom_join_page(
+    mn: str = Query(..., description="Meeting number"),
+    pwd: str = Query("", description="Passcode (optional)"),
+    name: str = Query("AI Teaching Assistant"),
+    role: int = Query(0, description="0 attendee, 1 host"),
+    leave: str = Query("https://knodemy.ai")
+):
+    try:
+        signature = generate_meeting_sdk_signature(mn, role)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Signature error: {e}")
+
+    # If joining as host (role=1), you must also pass host ZAK to ZoomMtg.join({ zak: ... })
+    host_zak_js = "undefined"  # replace with a secure fetch if you have it
+
+    html = f"""<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Zoom SDK Join</title>
+  <link rel="stylesheet" href="https://source.zoom.us/{ZOOM_SDK_VERSION}/css/bootstrap.css"/>
+  <link rel="stylesheet" href="https://source.zoom.us/{ZOOM_SDK_VERSION}/css/react-select.css"/>
+  <style>
+    body {{ margin:0; font-family:system-ui, Arial; background: #f5f5f5; }}
+    #zmmtg-root, #aria-notify-area {{ height: 100vh; }}
+    .loading {{ text-align: center; padding: 50px; font-size: 18px; }}
+  </style>
+</head>
+<body>
+  <div id="loading-message" class="loading">
+    <h2>Loading Zoom SDK...</h2>
+    <p>Please wait while we initialize the meeting.</p>
+  </div>
+  <div id="zmmtg-root" style="display: none;"></div>
+  <div id="aria-notify-area"></div>
+
+  <script>
+    let dependenciesLoaded = 0;
+    const totalDependencies = 3;
+    
+    function checkAllLoaded() {{
+      dependenciesLoaded++;
+      if (dependenciesLoaded >= totalDependencies) {{
+        initZoom();
+      }}
+    }}
+    
+    function loadScript(src, callback) {{
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = callback;
+      script.onerror = () => console.error('Failed to load:', src);
+      document.head.appendChild(script);
+    }}
+    
+    // Load dependencies in sequence
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js', checkAllLoaded);
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js', checkAllLoaded);
+    loadScript('https://source.zoom.us/zoom-meeting-{ZOOM_SDK_VERSION}.min.js', checkAllLoaded);
+    
+    function initZoom() {{
+      document.getElementById('loading-message').style.display = 'none';
+      document.getElementById('zmmtg-root').style.display = 'block';
+      
+      // Ensure ZoomMtg is available
+      if (typeof ZoomMtg === 'undefined') {{
+        console.error('ZoomMtg not loaded');
+        document.getElementById('loading-message').innerHTML = '<h2>Error</h2><p>Failed to load Zoom SDK</p>';
+        document.getElementById('loading-message').style.display = 'block';
+        return;
+      }}
+      
+      const signature     = {json.dumps(signature)};
+      const sdkKey        = {json.dumps(ZOOM_SDK_KEY)};
+      const meetingNumber = {json.dumps(mn)};
+      const passcode      = {json.dumps(pwd or "")};
+      const userName      = {json.dumps(name)};
+      const leaveUrl      = {json.dumps(leave)};
+      const role          = {json.dumps(role)};
+      
+      console.log('Initializing Zoom with meeting:', meetingNumber);
+      
+      ZoomMtg.setZoomJSLib("https://source.zoom.us/{ZOOM_SDK_VERSION}/lib", "/av");
+      ZoomMtg.preLoadWasm();
+      ZoomMtg.prepareWebSDK();
+
+      ZoomMtg.init({{
+        leaveUrl,
+        success: () => {{
+          console.log('SDK initialized, joining meeting...');
+          ZoomMtg.join({{
+            signature,
+            sdkKey,
+            meetingNumber,
+            userName,
+            passWord: passcode,
+            success: () => {{
+              console.log("Successfully joined meeting");
+            }},
+            error: (err) => {{
+              console.error("Join error:", err);
+              alert('Failed to join meeting: ' + (err.reason || 'Unknown error'));
+            }}
+          }});
+        }},
+        error: (err) => {{
+          console.error("Init error:", err);
+          alert('Failed to initialize Zoom: ' + (err.reason || 'Unknown error'));
+        }}
+      }});
+    }}
+  </script>
+</body>
+</html>"""
+    return HTMLResponse(content=html, status_code=200)
+
+# LECTURE GENERATION API ENDPOINTS
 
 @app.post("/lectures/generate-for-date")
 async def generate_lectures_for_specific_date(target_date: str = Query(...)):
@@ -501,11 +637,131 @@ async def get_scheduler_status():
         "tomorrow_date": get_tomorrow_date(),
         "automated_generation_enabled": True,
         "timed_audio_enabled": GENERATE_TIMED_AUDIO,
+        "zoom_sdk_configured": bool(ZOOM_SDK_KEY and ZOOM_SDK_SECRET),
         "components_available": {
             "EnhancedTimedSpeechGenerator": TimedSpeechGenerator is not None,
-            "ContentProcessor": ContentProcessor is not None
+            "ContentProcessor": ContentProcessor is not None,
+            "ZoomSDK": bool(ZOOM_SDK_KEY and ZOOM_SDK_SECRET)
         }
     }
+
+def generate_meeting_sdk_signature(meeting_number: str, role: int) -> str:
+    """Generate JWT signature for Zoom Web SDK"""
+    if not ZOOM_SDK_KEY or not ZOOM_SDK_SECRET:
+        raise HTTPException(status_code=500, detail="Zoom SDK credentials not configured")
+    
+    try:
+        iat = int(time.time())
+        exp = iat + 60 * 2  # JWT valid for 2 minutes to start join
+        token_exp = iat + 60 * 60  # SDK session max duration (1h typical)
+        
+        payload = {
+            "sdkKey": ZOOM_SDK_KEY,
+            "mn": meeting_number,
+            "role": role,
+            "iat": iat,
+            "exp": exp,
+            "tokenExp": token_exp,
+        }
+        
+        signature = jwt.encode(payload, ZOOM_SDK_SECRET, algorithm="HS256")
+        return signature
+    except Exception as e:
+        logger.error(f"Error generating Zoom signature: {e}")
+        raise HTTPException(status_code=500, detail=f"Signature generation failed: {e}")
+
+# ZOOM API ENDPOINTS
+
+@app.post("/zoom/signature")
+def create_signature(body: SignatureReq):
+    """
+    Returns a short-lived Meeting SDK signature for the Zoom Web SDK.
+    """
+    try:
+        signature = generate_meeting_sdk_signature(body.meetingNumber, body.role)
+        return {"signature": signature, "sdkKey": ZOOM_SDK_KEY}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# Alias endpoint to match frontend calling /api/zoom/signature
+@app.post("/api/zoom/signature")
+def create_signature_api(body: SignatureReq):
+    try:
+        signature = generate_meeting_sdk_signature(body.meetingNumber, body.role)
+        return {"signature": signature, "sdkKey": ZOOM_SDK_KEY}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+
+# TEACHER API ENDPOINTS
+
+@app.get("/teacher/lessons")
+async def get_teacher_lessons(teacher_id: str = Query(...)):
+    """Get lessons/courses for a specific teacher"""
+    try:
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
+        supabase = create_client(url, key)
+        
+        # Get courses for this teacher - only select columns that exist
+        response = supabase.table('courses').select(
+            'id, title, description, start_date, end_date'
+        ).eq('teacher_id', teacher_id).execute()
+        
+        courses = response.data or []
+        
+        # Calculate lesson count for each course
+        for course in courses:
+            try:
+                # Get actual lesson count from lessons table
+                lessons_response = supabase.table('lessons').select(
+                    'id'
+                ).eq('course_id', course['id']).execute()
+                course['lesson_count'] = len(lessons_response.data or [])
+            except Exception as e:
+                logger.warning(f"Could not get lesson count for course {course['id']}: {e}")
+                course['lesson_count'] = 0
+        
+        return {"courses": courses}
+        
+    except Exception as e:
+        logger.error(f"Error fetching teacher lessons: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/teacher/info")
+async def get_teacher_info(teacher_id: str = Query(...)):
+    """Get teacher information"""
+    try:
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
+        supabase = create_client(url, key)
+        
+        # Get teacher info from users table - only select columns that exist
+        response = supabase.table('users').select(
+            'id, email, first_name, last_name'
+        ).eq('id', teacher_id).execute()
+        
+        if not response.data:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+        
+        teacher_info = response.data[0]
+        
+        # Create a name field from first_name and last_name
+        first_name = teacher_info.get('first_name', '')
+        last_name = teacher_info.get('last_name', '')
+        teacher_info['name'] = f"{first_name} {last_name}".strip() or "Teacher"
+        
+        return teacher_info
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error fetching teacher info: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 # App lifecycle events
 @app.on_event("startup")
@@ -516,6 +772,7 @@ async def start_scheduler():
     logger.info("Automated lecture generation system initialized")
     logger.info(f"Scheduled jobs: midnight generation only")
     logger.info(f"Audio generation: {'enabled' if GENERATE_TIMED_AUDIO else 'disabled'}")
+    logger.info(f"Zoom SDK: {'configured' if ZOOM_SDK_KEY and ZOOM_SDK_SECRET else 'not configured'}")
 
 @app.on_event("shutdown")
 async def shutdown_scheduler():
@@ -526,38 +783,71 @@ async def shutdown_scheduler():
 
 @app.get("/teacher/lessons")
 async def get_teacher_lessons(teacher_id: str = Query(...)):
-    """Get lessons for a specific teacher"""
+    """Get lessons/courses for a specific teacher"""
     try:
-        logger.info(f"Fetching lessons for teacher_id: {teacher_id}")
-        client = SupabaseClient(teacher_id=teacher_id)
-        
-        # Use the existing method that gets all teacher data
-        teacher_data = client.get_all_teacher_lessons_with_courses()
-        
-        if 'error' in teacher_data:
-            raise HTTPException(status_code=404, detail=teacher_data['error'])
-        
-        return {"courses": teacher_data.get('courses', [])}
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
+        supabase = create_client(url, key)
+
+        # Get courses for this teacher - only select columns that exist
+        response = supabase.table('courses').select(
+            'id, title, description, start_date, end_date'
+        ).eq('teacher_id', teacher_id).execute()
+
+        courses = response.data or []
+
+        # Calculate lesson count for each course
+        for course in courses:
+            try:
+                # Get actual lesson count from lessons table
+                lessons_response = supabase.table('lessons').select(
+                    'id'
+                ).eq('course_id', course['id']).execute()
+                course['lesson_count'] = len(lessons_response.data or [])
+            except Exception as e:
+                logger.warning(f"Could not get lesson count for course {course['id']}: {e}")
+                course['lesson_count'] = 0
+
+        return {"courses": courses}
+
     except Exception as e:
         logger.error(f"Error fetching teacher lessons: {e}")
-        logger.error(f"Exception type: {type(e).__name__}")
-        raise HTTPException(status_code=500, detail=f"Failed to fetch lessons: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 
 @app.get("/teacher/info")
 async def get_teacher_info(teacher_id: str = Query(...)):
     """Get teacher information"""
     try:
-        logger.info(f"Fetching info for teacher_id: {teacher_id}")
-        client = SupabaseClient(teacher_id=teacher_id)
-        teacher_info = client.get_teacher_info()
-        
-        if 'error' in teacher_info:
-            raise HTTPException(status_code=404, detail=teacher_info['error'])
-            
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
+        supabase = create_client(url, key)
+
+        # Get teacher info from users table - only select columns that exist
+        response = supabase.table('users').select(
+            'id, email, first_name, last_name'
+        ).eq('id', teacher_id).execute()
+
+        if not response.data:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+
+        teacher_info = response.data[0]
+
+        # Create a name field from first_name and last_name
+        first_name = teacher_info.get('first_name', '')
+        last_name = teacher_info.get('last_name', '')
+        teacher_info['name'] = f"{first_name} {last_name}".strip() or "Teacher"
+
         return teacher_info
+
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Error fetching teacher info: {e}")
-        raise HTTPException(status_code=500, detail=f"Failed to fetch teacher info: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+        
 
 @app.get("/health")
 async def health_check():
